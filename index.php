@@ -70,6 +70,7 @@ for($i = 1; $i <= $date->format('t'); $i++) {
 
 $smarty->assign('dateTable', $dateTable);
 $smarty->assign('team', $team);
+$smarty->assign('listTeams', getTeams());
 $smarty->assign('date', $date);
 $smarty->assign('schedule', $schedule);
 $smarty->assign('months', $months);

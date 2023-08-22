@@ -31,7 +31,7 @@
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="setShift.php">Set global schedules</a>
+              <a class="nav-link" href="setShift.php">Set global shifts</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="userManager.php">User management</a>
@@ -41,7 +41,32 @@
     </nav>
   </header>
   <main>
-    User Manager!
+	<div class="container-fluid mt-3">
+		<div class="table-responsive">
+		<table class="table table-striped table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Team</th>
+				<th scope="col">E-Mail</th>
+				<th scope="col">Model</th>
+				<th scope="col">Admin</th>
+			</tr>
+			</thead>
+			<tbody>
+				{foreach from=$users item=user}
+				<tr>
+					<td><a href="changeUser.php?id={$user.id}">{$user.firstname} {$user.lastname}</a></td>
+					<td>{$teams.{$user.team}.display}</td>
+					<td>{$user.email}</td>
+					<td>{$user.model}</td>
+					<td><input type="checkbox" {if $user.admin == 1}checked{/if}></td>
+				</tr>
+				{/foreach}
+			</tbody>
+		</table>
+		</div>
+	</div>    
   </main>
   <footer>
     <!-- place footer here -->

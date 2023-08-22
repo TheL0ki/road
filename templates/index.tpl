@@ -82,7 +82,7 @@
                       <a class="nav-link active" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="setShift.php">Set global schedules</a>
+                      <a class="nav-link" href="setShift.php">Set global shifts</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="userManager.php">User management</a>
@@ -93,7 +93,7 @@
         </header>
         <main>
             {nocache}
-            <div class="container-fluid">
+            <div class="container-fluid mt-3">
                 <div class="row justify-content-start align-items-center">
                     <div class="col">
                         <div class="container-fluid p-0">
@@ -102,8 +102,9 @@
                                     <label for="team" class="form-label">Team</label>
                                     <select class="form-select" name="team" id="team" aria-activedescendant="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
                                         <option {if $team == 'all'} selected="selected"{/if} value="index.php?y={$date|date_format:'Y'}&m={$date|date_format:'%-m'}">All</option>
-                                        <option {if $team == '1'} selected="selected"{/if} value="index.php?y={$date|date_format:'Y'}&m={$date|date_format:'%-m'}&t=1">Produktservice</option>
-                                        <option {if $team == '2'} selected="selected"{/if} value="index.php?y={$date|date_format:'Y'}&m={$date|date_format:'%-m'}&t=2">Vertragsservice</option>
+                                        {foreach from=$listTeams item=listTeam}
+                                            <option {if $team == $listTeam.id} selected="selected"{/if} value="index.php?y={$date|date_format:'Y'}&m={$date|date_format:'%-m'}&t={$listTeam.id}">{$listTeam.display}</option>
+                                        {/foreach}
                                     </select>
                                 </div>
                             </div>

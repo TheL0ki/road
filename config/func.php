@@ -278,8 +278,14 @@ function getTeams() {
     while($row = $output->fetch_assoc()) {
         $result[] = $row;
     }
+
+    $teams = array();
+
+    foreach($result as $team) {
+        $teams[$team['id']] = $team;
+    }
     
-    return $result;
+    return $teams;
 }
 
 function createUser($firstname, $lastname, $email, $pwd, $team, $admin) {

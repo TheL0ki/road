@@ -11,10 +11,10 @@ require 'config/func.php';
 session_start();
 $smarty = new Smarty_Road();
 
-$users = getAllActiveUser();
-$teams = getTeams();
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 
-$smarty->assign('teams', $teams);
-$smarty->assign('users', $users);
-$smarty->display('userManager.tpl');
+$user = getUser($id);
+
+$smarty->assign('user', $user);
+$smarty->display('changeUser.tpl');
 ?>
