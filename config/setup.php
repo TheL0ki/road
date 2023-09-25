@@ -1,7 +1,7 @@
 <?php
-define('SMARTY_DIR', '/var/www/html/resources/smarty/');
-define('SMARTY_SYSPLUGINS_DIR', '/var/www/html/resources/smarty/sysplugins/');
-require('/var/www/html/resources/smarty/Smarty.class.php');
+define('SMARTY_DIR', '../../resources/smarty/');
+define('SMARTY_SYSPLUGINS_DIR', '../../resources/smarty/sysplugins/');
+require('../../resources/smarty/Smarty.class.php');
 
 class Smarty_road extends Smarty {
 
@@ -9,10 +9,10 @@ class Smarty_road extends Smarty {
     {
         parent::__construct();
 
-        $this->setTemplateDir('/var/www/html/road/prod/templates');
-        $this->setCompileDir('/var/www/html/road/prod/templates_c');
-        $this->setConfigDir('/var/www/html/road/prod/configs');
-        $this->setCacheDir('/var/www/html/road/prod/cache');
+        $this->setTemplateDir('./templates');
+        $this->setCompileDir('./templates_c');
+        $this->setConfigDir('./configs');
+        $this->setCacheDir('./cache');
 
         $this->caching = Smarty::CACHING_LIFETIME_CURRENT;
         $this->assign('app_name', 'road');
