@@ -11,9 +11,9 @@ require 'config/func.php';
 
 $allUsers = getAllActiveUser();
 foreach($allUsers as $user) {
-    $year = 2023;
-    $day = 8;
-    $month = 12;
+    $year = 2024;
+    $day = 1;
+    $month = 1;
     $shift = 14;
 
     if(checkShift($year, $month, $day, $user['id'])) {
