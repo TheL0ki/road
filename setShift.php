@@ -12,129 +12,48 @@ require 'config/func.php';
 session_start();
 $smarty = new Smarty_Road();
 
+$users = getAllActiveUser();
+
 if(isset($_GET['save'])) {
-    $allUsers = getAllActiveUser();
-    foreach($allUsers as $user) {
-        if($user['team'] == 1 AND $user['model'] == 'VZ' and $user['id'] != 1) {
-            $month = 12;
-            $year = 2023;
-            $shift = 3;
-            $createDate = $year . '-' . $month . '-01';
+    $month = filter_input(INPUT_POST, 'month', FILTER_SANITIZE_SPECIAL_CHARS);
+    $year = filter_input(INPUT_POST, 'year', FILTER_SANITIZE_SPECIAL_CHARS);
+    $shift = filter_input(INPUT_POST, 'shift', FILTER_SANITIZE_SPECIAL_CHARS);
+    $checkedUsers = filter_input(INPUT_POST, 'checkedUser', FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
+    $weekdays = filter_input(INPUT_POST, 'weekdayCheck', FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
     
-            $date = DateTime::createFromFormat('Y-m-d', $createDate);
-            for($i = 1; $i <= $date->format('t'); $i++) {
-                $checkDate = DateTime::createFromFormat('Y-m-d', $year . '-' . $month . '-' . $i);
-                if(!($checkDate->format('N') == '6') AND !($checkDate->format('N') == '7')) {
-                    $currentShift = checkShift($year, $month, $i, $user['id']);
-                    if($currentShift != FALSE) {
-                        if($currentShift['shift'] != 14 AND $currentShift['shift'] != 10 AND $currentShift['shift'] != 18) {
-                            updateShift($year, $month, $i, $user['id'], $shift);
-                            echo 'User '. $user['id'] . ' shift updated ' . "\r\n <br>";
-                        } else {
-                            echo 'Holiday. Skipping update' . "\r\n <br>";
-                        }
+    foreach($checkedUsers as $userID) {
+
+        $user = getUser($userID);
+
+        $createDate = $year . '-' . $month . '-01';
+        $date = DateTime::createFromFormat('Y-m-d', $createDate);
+
+        for($i = 1; $i <= $date->format('t'); $i++) {
+            $checkDate = DateTime::createFromFormat('Y-m-d', $year . '-' . $month . '-' . $i);
+            if(in_array($checkDate->format('N'), $weekdays)) {
+                $currentShift = checkShift($year, $month, $i, $user['id']);
+                if($currentShift != FALSE) {
+                    if($currentShift['shift'] != 14 AND $currentShift['shift'] != 10 AND $currentShift['shift'] != 18) {
+                        updateShift($year, $month, $i, $user['id'], $shift);
+                        // echo 'User '. $user['id'] . ' shift updated ' . "\r\n <br>";
                     } else {
-                        if(!($checkDate->format('N') == '5')) {
-                            saveShift($year, $month, $i, $user['id'], $shift);
-                            echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
-                        } else {
-                            saveShift($year, $month, $i, $user['id'], 17);
-                            echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
-                        }
+                        // echo 'Holiday. Skipping update' . "\r\n <br>";
                     }
-                }
-            }
-        } elseif(($user['team'] == 2 AND $user['model'] == 'VZ') OR $user['id'] == 1) {
-            $month = 12;
-            $year = 2023;
-            $shift = 1;
-            $createDate = $year . '-' . $month . '-01';
-    
-            $date = DateTime::createFromFormat('Y-m-d', $createDate);
-            for($i = 1; $i <= $date->format('t'); $i++) {
-                $checkDate = DateTime::createFromFormat('Y-m-d', $year . '-' . $month . '-' . $i);
-                if(!($checkDate->format('N') == '6') AND !($checkDate->format('N') == '7')) {
-                    $currentShift = checkShift($year, $month, $i, $user['id']);
-                    if($currentShift != FALSE) {
-                        if($currentShift['shift'] != 14 AND $currentShift['shift'] != 10 AND $currentShift['shift'] != 18) {
-                            updateShift($year, $month, $i, $user['id'], $shift);
-                            echo 'User '. $user['id'] . ' shift updated ' . "\r\n <br>";
-                        } else {
-                            echo 'Holiday. Skipping update' . "\r\n <br>";
-                        }
-                    } else {
-                        if(!($checkDate->format('N') == '5')) {
-                            saveShift($year, $month, $i, $user['id'], 1);
-                            echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
-                        } else {
-                            saveShift($year, $month, $i, $user['id'], $shift);
-                            echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
-                        }
-                    }
-                }
-            }
-        } elseif($user['id'] == 2) {
-            $month = 12;
-            $year = 2023;
-            $shift = 6;
-            $createDate = $year . '-' . $month . '-01';
-    
-            $date = DateTime::createFromFormat('Y-m-d', $createDate);
-            for($i = 1; $i <= $date->format('t'); $i++) {
-                $checkDate = DateTime::createFromFormat('Y-m-d', $year . '-' . $month . '-' . $i);
-                if(!($checkDate->format('N') == '6') AND !($checkDate->format('N') == '7')) {
-                    $currentShift = checkShift($year, $month, $i, $user['id']);
-                    if($currentShift != FALSE) {
-                        if($currentShift['shift'] != 14 AND $currentShift['shift'] != 10 AND $currentShift['shift'] != 18) {
-                            updateShift($year, $month, $i, $user['id'], $shift);
-                            echo 'User '. $user['id'] . ' shift updated ' . "\r\n <br>";
-                        } else {
-                            echo 'Holiday. Skipping update' . "\r\n <br>";
-                        }
-                    } else {
-                        if(!($checkDate->format('N') == '5')) {
-                            saveShift($year, $month, $i, $user['id'], 6);
-                            echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
-                        } else {
-                            saveShift($year, $month, $i, $user['id'], $shift);
-                            echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
-                        }
-                    }
-                }
-            }
-        } elseif($user['id'] == 12) {
-            $month = 12;
-            $year = 2023;
-            $shift = 7;
-            $createDate = $year . '-' . $month . '-01';
-    
-            $date = DateTime::createFromFormat('Y-m-d', $createDate);
-            for($i = 1; $i <= $date->format('t'); $i++) {
-                $checkDate = DateTime::createFromFormat('Y-m-d', $year . '-' . $month . '-' . $i);
-                if(!($checkDate->format('N') == '6') AND !($checkDate->format('N') == '7')) {
-                    $currentShift = checkShift($year, $month, $i, $user['id']);
-                    if($currentShift != FALSE) {
-                        if($currentShift['shift'] != 14 AND $currentShift['shift'] != 10 AND $currentShift['shift'] != 18) {
-                            updateShift($year, $month, $i, $user['id'], $shift);
-                            echo 'User '. $user['id'] . ' shift updated ' . "\r\n <br>";
-                        } else {
-                            echo 'Holiday. Skipping update' . "\r\n <br>";
-                        }
-                    } else {
-                        if(!($checkDate->format('N') == '5')) {
-                            saveShift($year, $month, $i, $user['id'], 7);
-                            echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
-                        } else {
-                            saveShift($year, $month, $i, $user['id'], $shift);
-                            echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
-                        }
-                    }
+                } else {
+                        saveShift($year, $month, $i, $user['id'], $shift);
+                        // echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
                 }
             }
         }
-    }   
-} else {
-    $smarty->display('setShift.tpl');
+    }
+    header('location: index.php?m='.$month.'&y='.$year);
 }
+$now = new DateTime();
+$selectDate = date_create($now->format('Y').'-'.$now->format('m').'-1');
+
+$smarty->assign('shift', getShifts());
+$smarty->assign('date', $selectDate);
+$smarty->assign('users', $users);
+$smarty->display('setShift.tpl');
 
 ?>

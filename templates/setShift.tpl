@@ -31,7 +31,7 @@
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="setShift.php">Set global shifts</a>
+              <a class="nav-link active" href="setShift.php">Batch assign</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="userManager.php">User management</a>
@@ -41,7 +41,88 @@
     </nav>
   </header>
   <main>
-    setShift!
+    <div class="container-fluid">
+      <form method="post" action="setShift.php?save=true">
+        <div class="row mt-2">
+          <div class="col-2 align-self-start">          
+            <div class="mb-3">
+              <label for="month" class="form-label">Month</label>
+              <select class="form-select" name="month" id="month" aria-describedby="helpId" placeholder="">
+                  {for $i=1 to 12}
+                    <option value="{$i}">{$i}</option>
+                  {/for}
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="year" class="form-label">Year</label>
+              <select class="form-select" name="year" id="year" aria-describedby="helpId" placeholder="">
+                  {for $i={$date|date_format:"Y"}-2 to {$date|date_format:"Y"}+2}
+                    {if $i == {$date|date_format:"Y"}}
+                      <option selected="selected" value="{$i}">{$i}</option>
+                    {else}
+                      <option value="{$i}">{$i}</option>
+                    {/if}
+                  {/for}
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="shift" class="form-label">Shift</label>
+              <select class="form-select" name="shift" id="shift" aria-describedby="helpId" placeholder="">
+                {foreach from=$shift item=$option}
+                  <option value="{$option.id}">{$option.name}</option>
+                {/foreach}
+              </select>
+            </div>
+          </div>
+          <div class="col-2 align-self-start">
+            <table class="table table-striped table-bordered">
+              <tr>
+                <td><input type="checkbox" id="weekdayCheck_1" value="1" name="weekdayCheck[]"></td><td>Monday</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" id="weekdayCheck_2" value="2" name="weekdayCheck[]"></td><td>Tuesday</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" id="weekdayCheck_3" value="3" name="weekdayCheck[]"></td><td>Wednesday</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" id="weekdayCheck_4" value="4" name="weekdayCheck[]"></td><td>Thursday</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" id="weekdayCheck_5" value="5" name="weekdayCheck[]"></td><td>Friday</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" id="weekdayCheck_6" value="6" name="weekdayCheck[]"></td><td>Saturday</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" id="weekdayCheck_7" value="7" name="weekdayCheck[]"></td><td>Sunday</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="col-4 align-self-start">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                </tr>
+                {foreach from=$users item=user}
+                <tr>
+                  <td><input type="checkbox" id="userCheck_{$user.id}" value="{$user.id}" name="checkedUser[]"></td>
+                  <td>{$user.firstname} {$user.lastname}</td>
+                </tr>
+                {/foreach}
+              </thead>
+            </table>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-primary"> 
+      </form>
+    </div>
   </main>
   <footer>
     <!-- place footer here -->

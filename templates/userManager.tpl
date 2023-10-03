@@ -31,7 +31,7 @@
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="setShift.php">Set global shifts</a>
+              <a class="nav-link" href="setShift.php">Batch assign</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="userManager.php">User management</a>
