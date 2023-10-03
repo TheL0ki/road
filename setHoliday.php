@@ -10,19 +10,22 @@ require 'config/db_cnx.php';
 require 'config/func.php';
 
 $allUsers = getAllActiveUser();
+$day = filter_input(INPUT_POST, 'day', FILTER_SANITIZE_SPECIAL_CHARS);
+$month = filter_input(INPUT_POST, 'month', FILTER_SANITIZE_SPECIAL_CHARS);
+$year = filter_input(INPUT_POST, 'year', FILTER_SANITIZE_SPECIAL_CHARS);
+$shift = 14;
+
 foreach($allUsers as $user) {
-    $year = 2024;
-    $day = 1;
-    $month = 1;
-    $shift = 14;
 
     if(checkShift($year, $month, $day, $user['id'])) {
         updateShift($year, $month, $day, $user['id'], $shift);
-        echo 'User '. $user['id'] . ' shift updated ' . "\r\n";
+        //echo 'User '. $user['id'] . ' shift updated ' . "\r\n <br>";
     } else {
         saveShift($year, $month, $day, $user['id'], $shift);
-        echo 'User '. $user['id'] . ' shift saved ' . "\r\n";
-    }    
+        //echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
+    }
 }
+
+header('location: index.php?m='.$month.'&y='.$year);
 
 ?>
