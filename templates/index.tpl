@@ -176,68 +176,83 @@
                 </div>                
                 <div class="row justify-content-center align-items-center mt-3">
                     <div class="col">
-                        <!-- <div class="table-responsive" style="overflow: hidden;"> -->
-                            <table class="table table-striped table-bordered">
-                                <thead>
-                                <tr>
-                                    <th class="name">
-                                        Name
-                                    </th>                                 
-                                    {for $i=1 to {$date|date_format:"t"}}
-                                        {if {$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7}
-                                        <th class="day bg-secondary">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th class="name">
+                                    Name
+                                </th>                                 
+                                {for $i=1 to {$date|date_format:"t"}}
+                                    {if {$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7}
+                                    <th class="day bg-secondary">
+                                    {elseif {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
+                                        <th class="day today">
+                                    {else}
+                                        <th class="day">
+                                    {/if}
+                                    {$dateTable.{$i}.d}
+                                    </th>
+                                {/for}
+                            </tr>
+                            </thead>
+                            {foreach from=$users item=user}
+                            <tr>
+                                <td class="name">
+                                    <a href="changeSchedule.php?id={$user.id}&y={$date|date_format:'Y'}&m={$date|date_format:'m'}">{$user.firstname} {$user.lastname}</a>
+                                </td>
+                                {for $i=1 to {$date|date_format:"t"}}
+                                    {if {$schedule[$user.id]} != NULL and array_key_exists($i, $schedule[$user.id]) == TRUE}
+                                        {if {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
+                                            <td class="day today schedule">
+                                        {elseif $schedule[$user.id][$i]['name'] == '918' OR $schedule[$user.id][$i]['name'] == '917' OR $schedule[$user.id][$i]['name'] == '916' OR $schedule[$user.id][$i]['name'] == '913'}
+                                            <td class="day schedule shiftEarly">
+                                        {elseif $schedule[$user.id][$i]['name'] == '1017' OR $schedule[$user.id][$i]['name'] == '1218' OR $schedule[$user.id][$i]['name'] == '1117' OR $schedule[$user.id][$i]['name'] == '1217'}
+                                            <td class="day schedule shiftLate">
+                                        {elseif $schedule[$user.id][$i]['name'] == '814' OR $schedule[$user.id][$i]['name'] == '915' OR $schedule[$user.id][$i]['name'] == '1518'}
+                                            <td class="day schedule shiftShort">
+                                        {elseif $schedule[$user.id][$i]['name'] == 'U' OR $schedule[$user.id][$i]['name'] == 'K' OR $schedule[$user.id][$i]['name'] == 'Ka' OR $schedule[$user.id][$i]['name'] == 'SCH'}                                        
+                                            <td class="day schedule shiftAway">
+                                        {elseif $schedule[$user.id][$i]['name'] == 'WE'}
+                                            <td class="day schedule shiftWe">
+                                        {elseif $schedule[$user.id][$i]['name'] == 'F'}
+                                            <td class="day schedule shiftHoliday">
+                                        {else}
+                                            <td class="day schedule">
+                                        {/if}
+                                    {else}
+                                        {if ({$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7)}
+                                            <td class="day bg-secondary">
                                         {elseif {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
-                                            <th class="day today">
+                                            <td class="day today schedule">
                                         {else}
-                                            <th class="day">
+                                            <td class="day">
                                         {/if}
-                                        {$dateTable.{$i}.d}
-                                        </th>
-                                    {/for}
-                                </tr>
-                                </thead>
-                                {foreach from=$users item=user}
-                                <tr>
-                                    <td class="name">
-                                        <a href="changeSchedule.php?id={$user.id}&y={$date|date_format:'Y'}&m={$date|date_format:'m'}">{$user.firstname} {$user.lastname}</a>
+                                    {/if}
+                                        <div class="container-fluid">
+                                            <div class="row p-0">
+                                                <div class="col p-0">                                        
+                                                    {if {$schedule[$user.id]} != NULL and array_key_exists($i, $schedule[$user.id]) == TRUE}
+                                                        {$schedule[$user.id][$i]['display']|replace:"-":"-<br>"}
+                                                    {/if}
+                                                </div>
+                                            </div>
+                                            <div class="row p-0">
+                                                <div class="col p-0">
+                                                    {if {$schedule[$user.id]} != NULL and array_key_exists($i, $schedule[$user.id]) == TRUE}
+                                                        {if {$schedule[$user.id][$i]['homeOffice']} == 1}
+                                                            <div>
+                                                                HO
+                                                            </div>
+                                                        {/if}
+                                                    {/if}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
-                                    {for $i=1 to {$date|date_format:"t"}}
-                                        {if {$schedule[$user.id]} != NULL and array_key_exists($i, $schedule[$user.id]) == TRUE}
-                                            {if {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
-                                                <td class="day today schedule">                                                
-                                            {elseif $schedule[$user.id][$i]['name'] == '918' OR $schedule[$user.id][$i]['name'] == '917' OR $schedule[$user.id][$i]['name'] == '916' OR $schedule[$user.id][$i]['name'] == '913'}
-                                                <td class="day schedule shiftEarly">
-                                            {elseif $schedule[$user.id][$i]['name'] == '1017' OR $schedule[$user.id][$i]['name'] == '1218' OR $schedule[$user.id][$i]['name'] == '1117' OR $schedule[$user.id][$i]['name'] == '1217'}
-                                                <td class="day schedule shiftLate">
-                                            {elseif $schedule[$user.id][$i]['name'] == '814' OR $schedule[$user.id][$i]['name'] == '915' OR $schedule[$user.id][$i]['name'] == '1518'}
-                                                <td class="day schedule shiftShort">
-                                            {elseif $schedule[$user.id][$i]['name'] == 'U' OR $schedule[$user.id][$i]['name'] == 'K' OR $schedule[$user.id][$i]['name'] == 'Ka' OR $schedule[$user.id][$i]['name'] == 'SCH'}                                        
-                                                <td class="day schedule shiftAway">
-                                            {elseif $schedule[$user.id][$i]['name'] == 'WE'}
-                                                <td class="day schedule shiftWe">
-                                            {elseif $schedule[$user.id][$i]['name'] == 'F'}
-                                                <td class="day schedule shiftHoliday">
-                                            {else}
-                                                <td class="day schedule">
-                                            {/if}
-                                        {else}
-                                            {if ({$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7)}
-                                                <td class="day bg-secondary">
-                                            {elseif {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
-                                                <td class="day today schedule">
-                                            {else}
-                                                <td class="day">
-                                            {/if}
-                                        {/if}
-                                        {if {$schedule[$user.id]} != NULL and array_key_exists($i, $schedule[$user.id]) == TRUE}
-                                            {$schedule[$user.id][$i]['display']|replace:"-":"-<br>"}
-                                        {/if}
-                                    </td>
-                                    {/for}
-                                </tr>
-                                {/foreach}
-                            </table>
-                        <!-- </div> -->
+                                {/for}
+                            </tr>
+                            {/foreach}
+                        </table>
                     </div>
                 </div>
                 {/nocache}

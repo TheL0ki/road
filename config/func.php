@@ -76,7 +76,7 @@ function getUser($id) {
 
 function getSchedule($id, $month, $year) {
     global $mysqli;
-    $select = "SELECT day, shift FROM schedule WHERE user = ? AND month = ? AND year = ?";
+    $select = "SELECT day, shift, homeOffice FROM schedule WHERE user = ? AND month = ? AND year = ?";
     $stmt = $mysqli->prepare($select);
     if($stmt === FALSE) {
         return 'prepare error: '.htmlspecialchars($mysqli->error);
@@ -98,17 +98,21 @@ function getSchedule($id, $month, $year) {
     $returnValue = array();
     if($output != NULL) {
         while($row = $output->fetch_assoc()) {
-            $result[$row['day']] = $row['shift'];
+            $result[$row['day']] = array(
+                'shift' => $row['shift'],
+                'homeOffice' => $row['homeOffice']
+            );
         }
     }
     
     if($result != NULL) {
         foreach($result as $key => $shift) {
-            $displayName = getShiftName($shift);
+            $displayName = getShiftName($shift['shift']);
             $returnValue[$key] = array(
                 'shift' => $shift,
                 'display' => $displayName['display'],
-                'name' => $displayName['name']
+                'name' => $displayName['name'],
+                'homeOffice' => $shift['homeOffice']
             );
         }
     } else {
