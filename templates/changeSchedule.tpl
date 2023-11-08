@@ -72,8 +72,8 @@
 									<td class="day">
 								{/if}
 								<select name="{$i}" id="{$i}">
-									{if $schedule != NULL and array_key_exists($i, $schedule)}
-										<option value="{$schedule.$i.shift}">{$schedule.$i.name}</option>
+									{if array_key_exists($i, $schedule)}
+										<option value="{$schedule.$i.shift.shift}">{$schedule.$i.name}</option>
 									{else}
 										<option></option>
 									{/if}
@@ -112,8 +112,8 @@
 									<td class="day">
 								{/if}
 								<select name="{$i}" id="{$i}">
-									{if $schedule != NULL and array_key_exists($i, $schedule)}
-										<option value="{$schedule.$i.shift}">{$schedule.$i.name}</option>
+									{if array_key_exists($i, $schedule)}
+										<option value="{$schedule.$i.shift.shift}">{$schedule.$i.name}</option>
 									{else}
 										<option></option>
 									{/if}

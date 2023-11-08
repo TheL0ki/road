@@ -201,7 +201,7 @@
                                     <a href="changeSchedule.php?id={$user.id}&y={$date|date_format:'Y'}&m={$date|date_format:'m'}">{$user.firstname} {$user.lastname}</a>
                                 </td>
                                 {for $i=1 to {$date|date_format:"t"}}
-                                    {if {$schedule[$user.id]} != NULL and array_key_exists($i, $schedule[$user.id]) == TRUE}
+                                    {if array_key_exists($i, $schedule[$user.id]) == TRUE}
                                         {if {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
                                             <td class="day today schedule">
                                         {elseif $schedule[$user.id][$i]['name'] == '918' OR $schedule[$user.id][$i]['name'] == '917' OR $schedule[$user.id][$i]['name'] == '916' OR $schedule[$user.id][$i]['name'] == '913'}
@@ -231,14 +231,14 @@
                                         <div class="container-fluid">
                                             <div class="row p-0">
                                                 <div class="col p-0">                                        
-                                                    {if {$schedule[$user.id]} != NULL and array_key_exists($i, $schedule[$user.id]) == TRUE}
+                                                    {if array_key_exists($i, $schedule[$user.id]) == TRUE}
                                                         {$schedule[$user.id][$i]['display']|replace:"-":"-<br>"}
                                                     {/if}
                                                 </div>
                                             </div>
                                             <div class="row p-0">
                                                 <div class="col p-0">
-                                                    {if {$schedule[$user.id]} != NULL and array_key_exists($i, $schedule[$user.id]) == TRUE}
+                                                    {if array_key_exists($i, $schedule[$user.id]) == TRUE}
                                                         {if {$schedule[$user.id][$i]['homeOffice']} == 1}
                                                             <div>
                                                                 HO

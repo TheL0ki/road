@@ -116,7 +116,7 @@ function getSchedule($id, $month, $year) {
             );
         }
     } else {
-        $returnValue = NULL;
+        $returnValue = array();
     }
 
     return $returnValue;
