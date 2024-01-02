@@ -85,7 +85,7 @@
                         <div class="mb-3 row">
                             <label for="inputName" class="col-4 col-form-label">Time Model</label>
                             <div class="col-8">
-                                <select class="form-select" name="inputTeam" id="inputTeam">
+                                <select class="form-select" name="model" id="model">
                                     <option selected></option>
                                     <option value="VZ">VZ</option>
                                     <option value="VZ">TZ</option>

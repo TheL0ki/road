@@ -297,12 +297,13 @@ function createUser($firstname, $lastname, $email, $pwd, $team, $model, $admin) 
     $insert = "INSERT INTO user (firstname, lastname, email, pwd, team, model, active, admin) VALUES (?,?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($insert);
     $active = 1;
+    $hashed = password_hash($pwd, PASSWORD_BCRYPT);
 
     if($stmt === FALSE) {
         return 'prepare error: '.htmlspecialchars($mysqli->error);
     }
     
-    $rc = $stmt->bind_param('sssssss', $firstname, $lastname, $email, password_hash($pwd, PASSWORD_BCRYPT), $team, $model, $active, $admin);
+    $rc = $stmt->bind_param('ssssssss', $firstname, $lastname, $email, $hashed, $team, $model, $active, $admin);
     if($rc === FALSE) {
         return 'bind error: '.htmlspecialchars($mysqli->error);
     }
