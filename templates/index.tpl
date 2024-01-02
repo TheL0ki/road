@@ -100,9 +100,6 @@
                         <div class="container-fluid p-0">
                             <div class="row">
                                 <div class="mb-3">
-                                    Test
-                                </div>
-                                <div class="mb-3">
                                     <label for="team" class="form-label">Team</label>
                                     <select class="form-select" name="team" id="team" aria-activedescendant="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
                                         <option {if $team == 'all'} selected="selected"{/if} value="index.php?y={$date|date_format:'Y'}&m={$date|date_format:'%-m'}">All</option>
