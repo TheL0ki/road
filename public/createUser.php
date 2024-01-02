@@ -7,8 +7,6 @@ chdir(dirname(__DIR__));
 require_once 'vendor/autoload.php';
 
 require 'config/setup.php';
-require 'config/config.php';
-require 'config/db_cnx.php';
 require 'config/func.php';
 
 session_start();
@@ -21,12 +19,13 @@ if(!empty($_POST)) {
     $pwd = filter_input(INPUT_POST, 'inputPwd', FILTER_SANITIZE_SPECIAL_CHARS);
     $team = filter_input(INPUT_POST, 'inputTeam', FILTER_SANITIZE_SPECIAL_CHARS);
     $admin = filter_input(INPUT_POST, 'inputAdmin', FILTER_SANITIZE_SPECIAL_CHARS);
+    $model = filter_input(INPUT_POST, 'model', FILTER_SANITIZE_SPECIAL_CHARS);
 
     if($admin != 1) {
         $admin = 0;
     }
 
-    $saveNewUser = createUser($firstname, $lastname, $email, $pwd, $team, $admin);
+    $saveNewUser = createUser($firstname, $lastname, $email, $pwd, $team, $model, $admin);
 
     if($saveNewUser == TRUE) {
         $smarty->display('success.tpl');

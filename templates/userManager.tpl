@@ -41,6 +41,22 @@
     </nav>
   </header>
   <main>
+  <div
+    class="container-fluid mt-3">
+    <div
+      class="row justify-content-center align-items-center g-2">
+      <div class="col">
+        <a
+          name=""
+          id=""
+          class="btn btn-primary"
+          href="createUser.php"
+          role="button"
+          >Create new User</a
+        >        
+      </div>
+    </div>    
+  </div>  
 	<div class="container-fluid mt-3">
 		<div class="table-responsive">
 		<table class="table table-striped table-bordered">

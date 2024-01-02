@@ -292,20 +292,17 @@ function getTeams() {
     return $teams;
 }
 
-function createUser($firstname, $lastname, $email, $pwd, $team, $admin) {
+function createUser($firstname, $lastname, $email, $pwd, $team, $model, $admin) {
     global $mysqli;
-    $insert = "INSERT INTO user (firstname, lastname, email, pwd, team, active, admin) VALUES (?,?,?,?,?,?,?)";
+    $insert = "INSERT INTO user (firstname, lastname, email, pwd, team, model, active, admin) VALUES (?,?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($insert);
-    $salt = parse_ini_file('/var/www/html/resources/secret.ini', TRUE);
-
-    $saltedPwd = md5($salt['pwd']['salt'] . $pwd);
     $active = 1;
 
     if($stmt === FALSE) {
         return 'prepare error: '.htmlspecialchars($mysqli->error);
     }
     
-    $rc = $stmt->bind_param('sssssss', $firstname, $lastname, $email, $saltedPwd, $team, $active, $admin);
+    $rc = $stmt->bind_param('sssssss', $firstname, $lastname, $email, password_hash($pwd, PASSWORD_BCRYPT), $team, $model, $active, $admin);
     if($rc === FALSE) {
         return 'bind error: '.htmlspecialchars($mysqli->error);
     }
