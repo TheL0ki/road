@@ -1,7 +1,8 @@
 <?php
-define('SMARTY_DIR', '../../resources/smarty/');
-define('SMARTY_SYSPLUGINS_DIR', '../../resources/smarty/sysplugins/');
-require('../../resources/smarty/Smarty.class.php');
+
+chdir(dirname(__DIR__));
+
+define('SMARTY_DIR', 'vendor/smarty/smarty/libs/');
 
 class Smarty_road extends Smarty {
 

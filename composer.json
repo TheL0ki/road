@@ -1,0 +1,6 @@
+{
+    "require": {
+        "smarty/smarty": "^4.3",
+        "symfony/var-dumper": "^7.0"
+    }
+}
