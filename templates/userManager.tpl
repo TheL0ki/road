@@ -10,10 +10,11 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/darkStyle.css">
     <style>
-        .nav-move {
-            margin-left: 10px;
-        }
+      td {
+        color: rgb(200, 200, 200);
+      }
     </style>
 </head>
 
@@ -40,7 +41,7 @@
   </div>  
 	<div class="container-fluid mt-3">
 		<div class="table-responsive">
-		<table class="table table-striped table-bordered">
+		<table class="table table-dark table-striped table-bordered">
 			<thead>
 			<tr>
 				<th scope="col">Name</th>
@@ -53,7 +54,7 @@
 			<tbody>
 				{foreach from=$users item=user}
 				<tr>
-					<td><a href="changeUser.php?id={$user.id}">{$user.firstname} {$user.lastname}</a></td>
+					<td><a href="changeUser.php?id={$user.id}" class="link-light">{$user.firstname} {$user.lastname}</a></td>
 					<td>{$teams.{$user.team}.display}</td>
 					<td>{$user.email}</td>
 					<td>{$user.model}</td>

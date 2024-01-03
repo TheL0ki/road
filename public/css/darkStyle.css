@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(80, 80, 80);
+}
+
+.dark-text {
+    color: rgb(200, 200, 200);
+}
+
+.filter_white {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}

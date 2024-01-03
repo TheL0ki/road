@@ -10,10 +10,11 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/darkStyle.css">
     <style>
-        .nav-move {
-            margin-left: 10px;
-        }
+      label, td, th {
+        color: rgb(200, 200, 200);
+      }
     </style>
 </head>
 
@@ -31,7 +32,7 @@
                 <div class="col align-self-start">
                   <div class="mb-3">
                     <label for="month" class="form-label">Month</label>
-                    <select class="form-select" name="month" id="month" aria-describedby="helpId" placeholder="">
+                    <select class="form-select bg-dark text-white" name="month" id="month" aria-describedby="helpId" placeholder="">
                         {for $i=1 to 12}
                           <option value="{$i}">{$i}</option>
                         {/for}
@@ -39,7 +40,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="year" class="form-label">Year</label>
-                    <select class="form-select" name="year" id="year" aria-describedby="helpId" placeholder="">
+                    <select class="form-select bg-dark text-white" name="year" id="year" aria-describedby="helpId" placeholder="">
                         {for $i={$date|date_format:"Y"}-2 to {$date|date_format:"Y"}+2}
                           {if $i == {$date|date_format:"Y"}}
                             <option selected="selected" value="{$i}">{$i}</option>
@@ -51,7 +52,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="shift" class="form-label">Shift</label>
-                    <select class="form-select" name="shift" id="shift" aria-describedby="helpId" placeholder="">
+                    <select class="form-select bg-dark text-white" name="shift" id="shift" aria-describedby="helpId" placeholder="">
                       {foreach from=$shift item=$option}
                         <option value="{$option.id}">{$option.name}</option>
                       {/foreach}
@@ -59,7 +60,7 @@
                   </div>
                 </div>
                 <div class="col align-self-start">
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-dark table-striped table-bordered">
                     <tr>
                       <td><input type="checkbox" id="weekdayCheck_1" value="1" name="weekdayCheck[]"></td><td>Monday</td>
                     </tr>
@@ -88,7 +89,7 @@
               </div>
               <div class="row">
                 <div class="col align-self-start">
-                  <table class="table table-striped table-bordered">
+                  <table class="table table-dark table-striped table-bordered">
                     <thead>
                       <tr>
                         <th></th>
@@ -105,7 +106,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <input type="submit" class="btn btn-primary" value="Set shift">
+                <input type="submit" class="btn btn-success" value="Set shift">
               </div>
             </form>
           </div>
@@ -116,7 +117,7 @@
               <form method="post" action="setHoliday.php">
                 <div class="mb-3">
                   <label for="day" class="form-label">Day</label>
-                  <select class="form-select" name="day" id="day" aria-describedby="helpId" placeholder="">
+                  <select class="form-select bg-dark text-white" name="day" id="day" aria-describedby="helpId" placeholder="">
                       {for $i=1 to 31}
                         <option value="{$i}">{$i}</option>
                       {/for}
@@ -124,7 +125,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="month" class="form-label">Month</label>
-                  <select class="form-select" name="month" id="month" aria-describedby="helpId" placeholder="">
+                  <select class="form-select bg-dark text-white" name="month" id="month" aria-describedby="helpId" placeholder="">
                       {for $i=1 to 12}
                         <option value="{$i}">{$i}</option>
                       {/for}
@@ -132,7 +133,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="year" class="form-label">Year</label>
-                  <select class="form-select" name="year" id="year" aria-describedby="helpId" placeholder="">
+                  <select class="form-select bg-dark text-white" name="year" id="year" aria-describedby="helpId" placeholder="">
                       {for $i={$date|date_format:"Y"}-2 to {$date|date_format:"Y"}+2}
                         {if $i == {$date|date_format:"Y"}}
                           <option selected="selected" value="{$i}">{$i}</option>
@@ -143,7 +144,7 @@
                   </select>
                 </div>
                 <div class="mb-3">
-                  <input type="submit" class="btn btn-primary" value="Set holiday">
+                  <input type="submit" class="btn btn-success" value="Set holiday">
                 </div>
               </form>
             </div>

@@ -10,7 +10,8 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="css/darkStyle.css">
+    <link rel="stylesheet" href="css/shiftStyles.css">
     <style>
         table {
             table-layout:fixed;
@@ -32,41 +33,13 @@
             white-space: nowrap;
         }
 
-        table.table.table-striped th.today, table.table.table-striped td.today {
-            background-color: lightskyblue;
-        }
-
         .schedule {
             font-size: x-small;
-        }
-
-        table.table.table-striped td.shiftLate {
-            background-color: rgb(255,241,204);
-        }
-
-        table.table.table-striped td.shiftEarly {
-            background-color: rgb(232,242,209);
-        }
-
-        table.table.table-striped td.shiftShort {
-            background-color: rgb(204,228,247);
-        }
-
-        table.table.table-striped td.shiftAway {
-            background-color: rgb(170, 170, 170);
-        }
-
-        table.table.table-striped td.shiftWe {
-            background-color: rgb(230,228,248);
-        }
-
-        table.table.table-striped td.shiftHoliday {
-            background-color: rgb(255,217,217);
         }
         
         .nav-move {
             margin-left: 10px;
-        } 
+        }
     </style>
     </head>
     <body>
@@ -81,8 +54,8 @@
                         <div class="container-fluid p-0">
                             <div class="row">
                                 <div class="mb-3">
-                                    <label for="team" class="form-label">Team</label>
-                                    <select class="form-select" name="team" id="team" aria-activedescendant="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
+                                    <label for="team" class="form-label dark-text">Team</label>
+                                    <select class="form-select bg-dark text-white" name="team" id="team" aria-activedescendant="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
                                         <option {if $team == 'all'} selected="selected"{/if} value="main.php?y={$setYear}&m={$setMonth}">All</option>
                                         {foreach from=$listTeams item=listTeam}
                                             <option {if $team == $listTeam.id} selected="selected"{/if} value="main.php?y={$setYear}&m={$setMonth}&t={$listTeam.id}">{$listTeam.display}</option>
@@ -99,8 +72,8 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label for="month" class="form-label">Month</label>
-                                        <select class="form-select" name="month" id="month" aria-describedby="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
+                                        <label for="month" class="form-label dark-text">Month</label>
+                                        <select class="form-select bg-dark text-white" name="month" id="month" aria-describedby="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
                                             {for $i=1 to 12}
                                                 {if $i=={$setMonth}}
                                                     <option selected="selected" value="main.php?y={$setYear}&m={$i}">{$months.$i}</option>
@@ -113,8 +86,8 @@
                                 </div>
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label for="year" class="form-label">Year</label>
-                                        <select class="form-select" name="year" id="year" aria-describedby="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
+                                        <label for="year" class="form-label dark-text">Year</label>
+                                        <select class="form-select bg-dark text-white" name="year" id="year" aria-describedby="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
                                             {for $i={$setYear}-2 to {$setYear}+2}
                                                 {if $i == {$setYear}}
                                                     <option selected="selected" value="main.php?y={$i}&m={$setMonth}">{$i}</option>
@@ -139,7 +112,7 @@
                             {$prevYear={$setYear}}
                         {/if}
                         <div class="d-grid gap-2">
-                            <a name="" id="" class="btn btn-primary" href="main.php?m={$prevMonth}&y={$prevYear}" role="button">← {$months.$prevMonth} {$prevYear}</a>
+                            <a name="" id="" class="btn btn-dark" href="main.php?m={$prevMonth}&y={$prevYear}" role="button">← {$months.$prevMonth} {$prevYear}</a>
                         </div>
                     </div>
                     <div class="col">
@@ -151,25 +124,25 @@
                             {$nextYear={$setYear}}
                         {/if}
                         <div class="d-grid gap-2">
-                            <a name="" id="" class="btn btn-primary" href="main.php?m={$nextMonth}&y={$nextYear}" role="button">{$months.$nextMonth} {$nextYear} →</a>
+                            <a name="" id="" class="btn btn-dark" href="main.php?m={$nextMonth}&y={$nextYear}" role="button">{$months.$nextMonth} {$nextYear} →</a>
                         </div>
                     </div>
                 </div>                
                 <div class="row justify-content-center align-items-center mt-3">
                     <div class="col">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-dark table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th class="name">
+                                <th class="name dark-text">
                                     Name
                                 </th>                                 
                                 {for $i=1 to {$date|date_format:"t"}}
                                     {if {$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7}
-                                    <th class="day bg-secondary">
+                                    <th class="day weekend dark-text">
                                     {elseif {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
-                                        <th class="day today">
+                                        <th class="day today dark-text">
                                     {else}
-                                        <th class="day">
+                                        <th class="day dark-text">
                                     {/if}
                                     {$dateTable.{$i}.d}
                                     </th>
@@ -180,9 +153,9 @@
                             <tr>
                                 <td class="name">
                                     {if $session.admin == 1}
-                                        <a href="changeSchedule.php?id={$user.id}&y={$setYear}&m={$date|date_format:'m'}">{$user.firstname} {$user.lastname}</a>
+                                        <a href="changeSchedule.php?id={$user.id}&y={$setYear}&m={$date|date_format:'m'}" class="link-light">{$user.firstname} {$user.lastname}</a>
                                     {else}
-                                        {$user.firstname} {$user.lastname}
+                                        <span class="dark-text">{$user.firstname} {$user.lastname}</span>
                                     {/if}
                                 </td>
                                 {for $i=1 to {$date|date_format:"t"}}
@@ -206,7 +179,7 @@
                                         {/if}
                                     {else}
                                         {if ({$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7)}
-                                            <td class="day bg-secondary">
+                                            <td class="day weekend">
                                         {elseif {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
                                             <td class="day today schedule">
                                         {else}

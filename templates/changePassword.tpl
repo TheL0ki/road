@@ -10,11 +10,7 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <style>
-        .nav-move {
-            margin-left: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/darkStyle.css">
 </head>
 
 <body>
@@ -31,15 +27,15 @@
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3 row">
-                                    <label for="oldPWD" class="col-sm-2 col-form-label">Current Password</label>
+                                    <label for="oldPWD" class="col-sm-2 col-form-label dark-text">Current Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="email" name="oldPWD">
+                                        <input type="password" class="form-control bg-dark text-white" id="email" name="oldPWD">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="newPWD" class="col-sm-2 col-form-label">New Password</label>
+                                    <label for="newPWD" class="col-sm-2 col-form-label dark-text">New Password</label>
                                     <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="email" name="newPWD">
+                                        <input type="password" class="form-control bg-dark text-white" id="email" name="newPWD">
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +49,7 @@
                             </div>
                             <div class="col">
                                 <div class="d-grid gap-2">
-                                    <a href="changePassword.php" class="btn btn-primary">Change Password</a>
+                                    <a href="changePassword.php" class="btn btn-dark">Change Password</a>
                                 </div>
                             </div>
                         </div>
