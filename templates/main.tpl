@@ -36,10 +36,6 @@
         .schedule {
             font-size: x-small;
         }
-        
-        .nav-move {
-            margin-left: 10px;
-        }
     </style>
     </head>
     <body>
