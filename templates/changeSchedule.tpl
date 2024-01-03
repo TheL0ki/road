@@ -30,18 +30,19 @@
 
 <body>
   <header>
-    <!-- place navbar here -->
+	{nocache}
+    {include file='nav.tpl'}
   </header>
   <main>
-  <div class="container-fluid">
+  <div class="container-fluid mt-3">
     <div class="row justify-content-center align-items-center g-2">
 		<div class="col">
-			{nocache}
+			
 			<form action="saveSchedule.php" method="post">
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="name">Name</th>
+							<th class="name dark-text">Name</th>
 							{assign var="loopDay" value=$date}
 							{for $i=1 to {$date|date_format:"t"}}
 								{if {$loopDay|date_format:'N'} == 6 OR {$loopDay|date_format:'N'} == 7}
@@ -49,7 +50,7 @@
 								{elseif {$loopDay|date_format:'Y-m-d'} == {$smarty.now|date_format:'Y-m-d'}}
 									<th class="day today">
 								{else}
-									<th class="day">
+									<th class="day dark-text">
 								{/if}
 									{$loopDay|date_format:"d"}
 								</th>
@@ -62,7 +63,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td rowspan="3" class="name">{$user.firstname} {$user.lastname}</td>
+							<td rowspan="3" class="name dark-text">{$user.firstname} {$user.lastname}</td>
 							{for $i=1 to {$date|date_format:"t"}}
 								{if {$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7}
 									<td class="day bg-secondary">
@@ -96,7 +97,7 @@
 								{elseif {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
 									<th class="day today">
 								{else}
-									<th class="day">
+									<th class="day dark-text">
 								{/if}
 									{$dateTable.{$i}.d}
 								</th>
