@@ -10,6 +10,7 @@ require 'config/setup.php';
 require 'config/func.php';
 
 session_start();
+$smarty = new Smarty_Road();
 if(isset($_SESSION["user"])) {
     if(isset($_POST['newPWD'])) {
         $oldPWD = filter_input(INPUT_POST, 'oldPWD', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -23,7 +24,6 @@ if(isset($_SESSION["user"])) {
         }
 
     }
-    $smarty = new Smarty_Road();
     
     $smarty->assign('session', $_SESSION["user"]);
     $smarty->display('changePassword.tpl');

@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    {nocache}
   <header>
     {include file='nav.tpl'}
   </header>
@@ -62,6 +63,7 @@
         </div>
     </div>
   </main>
+  {/nocache}
   <footer>
     <!-- place footer here -->
   </footer>
