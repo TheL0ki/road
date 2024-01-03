@@ -24,15 +24,15 @@ foreach($input as $key => $result) {
     if(checkShift($y,$m,$key,$userId)) {
         if($result != NULL && $result != '---') {
             updateShift($y,$m,$key,$userId,$result);            
-            header('location: index.php?m='.$m.'&y='.$y);
+            header('location: main.php?m='.$m.'&y='.$y);
         } else {
             deleteShift($y,$m,$key,$userId);
-            header('location: index.php?m='.$m.'&y='.$y);
+            header('location: main.php?m='.$m.'&y='.$y);
         }
     } else {
         if($result != NULL) {
             saveShift($y,$m,$key,$userId,$result);
-            header('location: index.php?m='.$m.'&y='.$y);
+            header('location: main.php?m='.$m.'&y='.$y);
         }
     }
 }
