@@ -315,4 +315,104 @@ function createUser($firstname, $lastname, $email, $pwd, $team, $model, $admin) 
 
     return TRUE;
 }
-?>
+
+function loginUser($email, $pwd) {
+    global $mysqli;
+    $select = "SELECT * FROM user WHERE email = ?";
+    $stmt = $mysqli->prepare($select);
+    if($stmt === FALSE) {
+        return 'prepare error: '.htmlspecialchars($mysqli->error);
+    }
+    
+    $rc = $stmt->bind_param('s', $email);
+    if($rc === FALSE) {
+        return 'bind error: '.htmlspecialchars($mysqli->error);
+    }
+    
+    $rc = $stmt->execute();
+    if($rc === FALSE) {
+        return 'execute error: '.htmlspecialchars($mysqli->error);
+    }
+
+    $output = $stmt->get_result();
+    $result = $output->fetch_assoc();
+    
+    if(isset($result) AND $result != NULL) {
+        if(password_verify($pwd, $result["pwd"])) {
+            return $result;
+        } else {
+            return FALSE;
+        }
+    } else {
+        return FALSE;
+    }    
+}
+
+function changeSettings($userID, $email) {
+    global $mysqli;
+    $update = 'UPDATE user SET email = ? WHERE id = ?';
+    $stmt = $mysqli->prepare($update);
+    if($stmt === FALSE) {
+        return 'prepare error: '.htmlspecialchars($mysqli->error);
+    }
+
+    if($stmt === FALSE) {
+        return 'prepare error: '.htmlspecialchars($mysqli->error);
+    }
+    
+    $rc = $stmt->bind_param('ss', $email, $userID);
+    if($rc === FALSE) {
+        return 'bind error: '.htmlspecialchars($mysqli->error);
+    }
+    
+    $rc = $stmt->execute();
+    if($rc === FALSE) {
+        return 'execute error: '.htmlspecialchars($mysqli->error);
+    }
+
+    return TRUE;
+}
+
+function changePWD($oldPWD, $newPWD, $userID) {
+    global $mysqli;
+    $select = 'SELECT pwd FROM user WHERE id = ?';
+
+    $stmt = $mysqli->prepare($select);
+    if($stmt === FALSE) {
+        return 'prepare error: '.htmlspecialchars($mysqli->error);
+    }
+    
+    $rc = $stmt->bind_param('s', $userID);
+    if($rc === FALSE) {
+        return 'bind error: '.htmlspecialchars($mysqli->error);
+    }
+    
+    $rc = $stmt->execute();
+    if($rc === FALSE) {
+        return 'execute error: '.htmlspecialchars($mysqli->error);
+    }
+
+    $output = $stmt->get_result();
+    $result = $output->fetch_assoc();
+
+    if(password_verify($oldPWD, $result['pwd'])) {
+        $insertPWD = password_hash($newPWD, PASSWORD_BCRYPT);
+        $update = 'UPDATE user SET pwd = ? WHERE id = ?';
+        $stmt = $mysqli->prepare($update);
+        if($stmt === FALSE) {
+            return 'prepare error: '.htmlspecialchars($mysqli->error);
+        }
+        
+        $rc = $stmt->bind_param('ss', $insertPWD, $userID);
+        if($rc === FALSE) {
+            return 'bind error: '.htmlspecialchars($mysqli->error);
+        }
+        
+        $rc = $stmt->execute();
+        if($rc === FALSE) {
+            return 'execute error: '.htmlspecialchars($mysqli->error);
+        }
+
+        return TRUE;
+    }
+}

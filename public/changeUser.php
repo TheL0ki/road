@@ -10,6 +10,7 @@ require 'config/setup.php';
 require 'config/func.php';
 
 session_start();
+if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
 $smarty = new Smarty_Road();
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -17,5 +18,8 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
 $user = getUser($id);
 
 $smarty->assign('user', $user);
+$smarty->assign('session', $_SESSION["user"]);
 $smarty->display('changeUser.tpl');
-?>
+} else {
+    header('location: index.php');
+}

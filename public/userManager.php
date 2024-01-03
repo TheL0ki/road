@@ -10,12 +10,16 @@ require 'config/setup.php';
 require 'config/func.php';
 
 session_start();
-$smarty = new Smarty_Road();
+if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
+    $smarty = new Smarty_Road();
 
-$users = getAllActiveUser();
-$teams = getTeams();
+    $users = getAllActiveUser();
+    $teams = getTeams();
 
-$smarty->assign('teams', $teams);
-$smarty->assign('users', $users);
-$smarty->display('userManager.tpl');
-?>
+    $smarty->assign('teams', $teams);
+    $smarty->assign('users', $users);
+    $smarty->assign('session', $_SESSION["user"]);
+    $smarty->display('userManager.tpl');
+} else {
+    header('location: index.php');
+}
