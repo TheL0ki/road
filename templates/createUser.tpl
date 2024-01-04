@@ -10,8 +10,12 @@
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/darkStyle.css">
+	<style>
+		.form-control::placeholder {
+			color: white;
+		}
+	</style>
 </head>
-
 <body>
 	<header>
 		{include file='nav.tpl'}
@@ -31,33 +35,33 @@
 					{nocache}
 					<form action="createUser.php" method="post">
 						<div class="mb-3 row">
-							<label for="inputName" class="col-4 col-form-label">Firstname</label>
+							<label for="inputName" class="col-4 col-form-label dark-text">Firstname</label>
 							<div class="col-8">
-								<input type="text" class="form-control" name="inputFirstname" id="inputFirstname" placeholder="Firstname">
+								<input type="text" class="form-control bg-dark text-white" name="inputFirstname" id="inputFirstname" placeholder="Firstname">
 							</div>
 						</div>
 						<div class="mb-3 row">
-							<label for="inputName" class="col-4 col-form-label">Lastname</label>
+							<label for="inputName" class="col-4 col-form-label dark-text">Lastname</label>
 							<div class="col-8">
-								<input type="text" class="form-control" name="inputLastname" id="inputLastname" placeholder="Lastname">
+								<input type="text" class="form-control bg-dark text-white" name="inputLastname" id="inputLastname" placeholder="Lastname">
 							</div>
 						</div>
 						<div class="mb-3 row">
-							<label for="inputName" class="col-4 col-form-label">E-Mail</label>
+							<label for="inputName" class="col-4 col-form-label dark-text">E-Mail</label>
 							<div class="col-8">
-								<input type="text" class="form-control" name="inputEmail" id="inputEmail" placeholder="E-Mail">
+								<input type="text" class="form-control bg-dark text-white" name="inputEmail" id="inputEmail" placeholder="E-Mail">
 							</div>
 						</div>
 						<div class="mb-3 row">
-							<label for="inputName" class="col-4 col-form-label">Password</label>
+							<label for="inputName" class="col-4 col-form-label dark-text">Password</label>
 							<div class="col-8">
-								<input type="password" class="form-control" name="inputPwd" id="inputPwd" placeholder="">
+								<input type="password" class="form-control bg-dark text-white" name="inputPwd" id="inputPwd" placeholder="">
 							</div>
 						</div>
 						<div class="mb-3 row">
-							<label for="inputName" class="col-4 col-form-label">Team</label>
+							<label for="inputName" class="col-4 col-form-label dark-text">Team</label>
 							<div class="col-8">
-								<select class="form-select" name="inputTeam" id="inputTeam">
+								<select class="form-select bg-dark text-white" name="inputTeam" id="inputTeam">
 									<option selected></option>
 									{foreach from=$teams item=team}
 									<option value="{$team.id}">{$team.display}</option>
@@ -66,9 +70,9 @@
 							</div>
 						</div>
 						<div class="mb-3 row">
-							<label for="inputName" class="col-4 col-form-label">Time Model</label>
+							<label for="inputName" class="col-4 col-form-label dark-text">Time Model</label>
 							<div class="col-8">
-								<select class="form-select" name="model" id="model">
+								<select class="form-select bg-dark text-white" name="model" id="model">
 									<option selected></option>
 									<option value="VZ">VZ</option>
 									<option value="VZ">TZ</option>
@@ -80,7 +84,7 @@
 							<div class="col-8">
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" value="1" name="inputAdmin" id="inputAdmin">
-									<label class="form-check-label" for="inputAdmin">
+									<label class="form-check-label dark-text" for="inputAdmin">
 										Admin
 									</label>
 								</div>
