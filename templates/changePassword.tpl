@@ -19,6 +19,13 @@
   </header>
   <main>
     <div class="container-fluid mt-3">
+        {if $smarty.server.HTTP_HOST == "localhost"}
+			<div class="row justify-content-center mb-3">
+				<div class="col border border-danger text-center">
+					<h2 class="text-danger">DEV ENVIRONMENT</h2>
+				</div>
+			</div>
+        {/if}
         <div class="row justify-content-center">
             <div class="col-6">
                 <form action="changePassword.php" method="post">

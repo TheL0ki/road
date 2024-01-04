@@ -22,21 +22,19 @@
     {include file='nav.tpl'}
   </header>
   <main>
-  <div
-    class="container-fluid mt-3">
-    <div
-      class="row justify-content-center align-items-center g-2">
-      <div class="col">
-        <a
-          name=""
-          id=""
-          class="btn btn-primary"
-          href="createUser.php"
-          role="button"
-          >Create new User</a
-        >        
-      </div>
-    </div>    
+  <div class="container-fluid mt-3">
+	{if $smarty.server.HTTP_HOST == "localhost"}
+		<div class="row justify-content-center mb-3">
+			<div class="col border border-danger text-center">
+				<h2 class="text-danger">DEV ENVIRONMENT</h2>
+			</div>
+		</div>
+	{/if}
+    <div class="row justify-content-center align-items-center g-2">
+		<div class="col">
+			<a name="" id="" class="btn btn-primary" href="createUser.php" role="button">Create new User</a>        
+		</div>
+	</div>    
   </div>  
 	<div class="container-fluid mt-3">
 		<div class="table-responsive">
