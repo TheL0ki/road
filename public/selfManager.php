@@ -27,7 +27,6 @@ if(isset($_SESSION["user"])) {
         }
     }
 
-    $smarty->assign('session', $_SESSION["user"]);
     $smarty->display('selfManager.tpl');
 } else {
     header('location: index.php');

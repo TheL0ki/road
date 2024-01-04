@@ -24,8 +24,10 @@
 	<div class="container-fluid mt-3">
 		{if $smarty.server.HTTP_HOST == "localhost"}
 			<div class="row justify-content-center mb-3">
-				<div class="col border border-danger text-center">
-					<h2 class="text-danger">DEV ENVIRONMENT</h2>
+				<div class="col">
+                    <div class="border border-danger text-center">
+                        <h2 class="text-danger">DEV ENVIRONMENT</h2>
+                    </div>
 				</div>
 			</div>
 		{/if}

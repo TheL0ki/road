@@ -33,7 +33,6 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
     $smarty->assign('user', getUser($id));
     $smarty->assign('schedule', getSchedule($id, $m, $y));
     $smarty->assign('shift', getShifts());
-    $smarty->assign('session', $_SESSION["user"]);
     $smarty->display('changeSchedule.tpl');
 } else {
     header('location: index.php');

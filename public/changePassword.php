@@ -24,8 +24,6 @@ if(isset($_SESSION["user"])) {
         }
 
     }
-    
-    $smarty->assign('session', $_SESSION["user"]);
     $smarty->display('changePassword.tpl');
 } else {
     header('location: index.php');

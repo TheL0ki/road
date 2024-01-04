@@ -13,12 +13,15 @@
 				<li class="nav-item">
 					<a class="nav-link" href="selfManager.php">Settings</a>
 				</li>
-				{if $session.admin == 1}
+				{if $smarty.session.user.admin == 1}
 					<li class="nav-item">
 						<a class="nav-link" href="setShift.php">Batch assign</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="userManager.php">User management</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="shiftManager.php">Shift management</a>
 					</li>
 				{/if}
 				<li class="nav-item">

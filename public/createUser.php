@@ -36,7 +36,6 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
         }
     } else {
         $smarty->assign('teams', getTeams());
-        $smarty->assign('session', $_SESSION["user"]);
         $smarty->display('createUser.tpl');
     }
 } else {

@@ -76,7 +76,6 @@ if(isset($_SESSION["user"])) {
     $smarty->assign('users', $users);
     $smarty->assign('setYear', $date->format('Y'));
     $smarty->assign('setMonth', $date->format('n'));
-    $smarty->assign('session', $_SESSION["user"]);
     $smarty->display('main.tpl');
 } else {
     header('location: index.php');

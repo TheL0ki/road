@@ -18,7 +18,6 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
 
     $smarty->assign('teams', $teams);
     $smarty->assign('users', $users);
-    $smarty->assign('session', $_SESSION["user"]);
     $smarty->display('userManager.tpl');
 } else {
     header('location: index.php');

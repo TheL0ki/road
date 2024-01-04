@@ -22,44 +22,48 @@
 	{include file='nav.tpl'}
   </header>
   <main>
-  <div class="container-fluid mt-3">
-	{if $smarty.server.HTTP_HOST == "localhost"}
-		<div class="row justify-content-center mb-3">
-			<div class="col border border-danger text-center">
-				<h2 class="text-danger">DEV ENVIRONMENT</h2>
+	<div class="container-fluid mt-3">
+		{if $smarty.server.HTTP_HOST == "localhost"}
+			<div class="row justify-content-center mb-3">
+				<div class="col">
+					<div class="border border-danger text-center">
+						<h2 class="text-danger">DEV ENVIRONMENT</h2>
+					</div>
+				</div>
+			</div>
+		{/if}
+		<div class="row justify-content-center align-items-center g-2 mb-3">
+			<div class="col">
+				<a name="" id="" class="btn btn-primary" href="createUser.php" role="button">Create new User</a>        
 			</div>
 		</div>
-	{/if}
-	<div class="row justify-content-center align-items-center g-2">
-		<div class="col">
-			<a name="" id="" class="btn btn-primary" href="createUser.php" role="button">Create new User</a>        
-		</div>
-	</div>    
-  </div>  
-	<div class="container-fluid mt-3">
-		<div class="table-responsive">
-		<table class="table table-dark table-striped table-bordered">
-			<thead>
-			<tr>
-				<th scope="col">Name</th>
-				<th scope="col">Team</th>
-				<th scope="col">E-Mail</th>
-				<th scope="col">Model</th>
-				<th scope="col">Admin</th>
-			</tr>
-			</thead>
-			<tbody>
-				{foreach from=$users item=user}
-				<tr>
-					<td><a href="changeUser.php?id={$user.id}" class="link-light">{$user.firstname} {$user.lastname}</a></td>
-					<td>{$teams.{$user.team}.display}</td>
-					<td>{$user.email}</td>
-					<td>{$user.model}</td>
-					<td><input type="checkbox" {if $user.admin == 1}checked{/if}></td>
-				</tr>
-				{/foreach}
-			</tbody>
-		</table>
+		<div class="row justify-content-center">
+			<div class="col">
+				<div class="table-responsive">
+					<table class="table table-dark table-striped table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">Team</th>
+								<th scope="col">E-Mail</th>
+								<th scope="col">Model</th>
+								<th scope="col">Admin</th>
+							</tr>
+						</thead>
+						<tbody>
+							{foreach from=$users item=user}
+							<tr>
+								<td><a href="changeUser.php?id={$user.id}" class="link-light">{$user.firstname} {$user.lastname}</a></td>
+								<td>{$teams.{$user.team}.display}</td>
+								<td>{$user.email}</td>
+								<td>{$user.model}</td>
+								<td><input type="checkbox" {if $user.admin == 1}checked{/if}></td>
+							</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>    
   </main>

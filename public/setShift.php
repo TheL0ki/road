@@ -56,7 +56,6 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
 	$smarty->assign('shift', getShifts());
 	$smarty->assign('date', $selectDate);
 	$smarty->assign('users', $users);
-	$smarty->assign('session', $_SESSION["user"]);
 	$smarty->display('setShift.tpl');
 } else {
 	header('location: index.php');

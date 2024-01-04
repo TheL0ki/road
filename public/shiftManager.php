@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -11,14 +12,11 @@ require 'config/func.php';
 
 session_start();
 if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
-$smarty = new Smarty_Road();
 
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+	$smarty = new Smarty_Road();
 
-$user = getUser($id);
-
-$smarty->assign('user', $user);
-$smarty->display('changeUser.tpl');
+    $smarty->assign('shifts', getShifts());
+    $smarty->display('shiftManager.tpl');
 } else {
-    header('location: index.php');
+	header('location: index.php');
 }

@@ -46,8 +46,10 @@
 			<div class="container-fluid mt-3">
 				{if $smarty.server.HTTP_HOST == "localhost"}
 					<div class="row justify-content-center mb-3">
-						<div class="col border border-danger text-center">
-							<h2 class="text-danger">DEV ENVIRONMENT</h2>
+						<div class="col">
+							<div class="border border-danger text-center">
+								<h2 class="text-danger">DEV ENVIRONMENT</h2>
+							</div>
 						</div>
 					</div>
 				{/if}
@@ -154,7 +156,7 @@
 							{foreach from=$users item=user}
 							<tr>
 								<td class="name">
-									{if $session.admin == 1}
+									{if $smarty.session.user.admin == 1}
 										<a href="changeSchedule.php?id={$user.id}&y={$setYear}&m={$date|date_format:'m'}" class="link-light">{$user.firstname} {$user.lastname}</a>
 									{else}
 										<span class="dark-text">{$user.firstname} {$user.lastname}</span>

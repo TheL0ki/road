@@ -21,8 +21,10 @@
 	<div class="container-fluid mt-3">
 		{if $smarty.server.HTTP_HOST == "localhost"}
 			<div class="row justify-content-center mb-3">
-				<div class="col border border-danger text-center">
-					<h2 class="text-danger">DEV ENVIRONMENT</h2>
+				<div class="col">
+					<div class="border border-danger text-center">
+						<h2 class="text-danger">DEV ENVIRONMENT</h2>
+					</div>
 				</div>
 			</div>
 		{/if}
@@ -35,8 +37,8 @@
 								<div class="mb-3 row">
 									<label for="email" class="col-sm-2 col-form-label dark-text">Email</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control bg-dark text-white" id="email" name="email" value="{$session.email}">
-										<input type="hidden" id="userID" name="userID" value="{$session.id}">
+										<input type="text" class="form-control bg-dark text-white" id="email" name="email" value="{$smarty.session.user.email}">
+										<input type="hidden" id="userID" name="userID" value="{$smarty.session.user.id}">
 									</div>
 								</div>
 							</div>
