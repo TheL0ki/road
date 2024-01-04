@@ -48,7 +48,7 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
 			 }
 		  }
 	   }
-	   header('location: index.php?m='.$month.'&y='.$year);
+	   header('location: main.php?m='.$month.'&y='.$year);
 	}
 	$now = new DateTime();
 	$selectDate = date_create($now->format('Y').'-'.$now->format('m').'-1');
