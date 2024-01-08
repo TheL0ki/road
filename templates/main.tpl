@@ -156,7 +156,7 @@
 							{foreach from=$users item=user}
 							<tr>
 								<td class="name">
-									{if $smarty.session.user.admin == 1}
+									{if $smarty.session.user.admin == 1 OR $smarty.session.user.id == $user.id}
 										<a href="changeSchedule.php?id={$user.id}&y={$setYear}&m={$date|date_format:'m'}" class="link-light">{$user.firstname} {$user.lastname}</a>
 									{else}
 										<span class="dark-text">{$user.firstname} {$user.lastname}</span>
@@ -165,21 +165,21 @@
 								{for $i=1 to {$date|date_format:"t"}}
 									{if array_key_exists($i, $schedule[$user.id]) == TRUE}
 										{if {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
-											<td class="day today schedule">
+											<td class="day today schedule" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{elseif $schedule[$user.id][$i]['name'] == '918' OR $schedule[$user.id][$i]['name'] == '917' OR $schedule[$user.id][$i]['name'] == '916' OR $schedule[$user.id][$i]['name'] == '913'}
-											<td class="day schedule shiftEarly">
+											<td class="day schedule shiftEarly" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{elseif $schedule[$user.id][$i]['name'] == '1017' OR $schedule[$user.id][$i]['name'] == '1218' OR $schedule[$user.id][$i]['name'] == '1117' OR $schedule[$user.id][$i]['name'] == '1217'}
-											<td class="day schedule shiftLate">
+											<td class="day schedule shiftLate" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{elseif $schedule[$user.id][$i]['name'] == '814' OR $schedule[$user.id][$i]['name'] == '915' OR $schedule[$user.id][$i]['name'] == '1518'}
-											<td class="day schedule shiftShort">
+											<td class="day schedule shiftShort" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{elseif $schedule[$user.id][$i]['name'] == 'U' OR $schedule[$user.id][$i]['name'] == 'K' OR $schedule[$user.id][$i]['name'] == 'Ka' OR $schedule[$user.id][$i]['name'] == 'SCH'}                                        
-											<td class="day schedule shiftAway">
+											<td class="day schedule shiftAway" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{elseif $schedule[$user.id][$i]['name'] == 'WE'}
-											<td class="day schedule shiftWe">
+											<td class="day schedule shiftWe" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{elseif $schedule[$user.id][$i]['name'] == 'F'}
-											<td class="day schedule shiftHoliday">
+											<td class="day schedule shiftHoliday" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{else}
-											<td class="day schedule">
+											<td class="day schedule" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{/if}
 									{else}
 										{if ({$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7)}
@@ -190,26 +190,15 @@
 											<td class="day">
 										{/if}
 									{/if}
-										<div class="container-fluid">
-											<div class="row p-0">
-												<div class="col p-0">                                        
-													{if array_key_exists($i, $schedule[$user.id]) == TRUE}
-														{$schedule[$user.id][$i]['display']|replace:"-":"-<br>"}
-													{/if}
-												</div>
-											</div>
-											<div class="row p-0">
-												<div class="col p-0">
-													{if array_key_exists($i, $schedule[$user.id]) == TRUE}
-														{if {$schedule[$user.id][$i]['homeOffice']} == 1}
-															<div>
-																HO
-															</div>
-														{/if}
-													{/if}
-												</div>
-											</div>
-										</div>
+                                        <div class="container-fluid">
+                                            <div class="row p-0">
+                                                <div class="col p-0">
+                                                    {if array_key_exists($i, $schedule[$user.id]) == TRUE}
+                                                        {$schedule[$user.id][$i]['display']|replace:"-":"-<br>"}
+                                                    {/if}
+                                                </div>
+                                            </div>
+                                        </div>
 									</td>
 								{/for}
 							</tr>

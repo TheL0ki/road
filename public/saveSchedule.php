@@ -20,18 +20,24 @@ unset($input['userId']);
 unset($input['y']);
 unset($input['m']);
 
-foreach($input as $key => $result) {
+foreach($input['shift'] as $key => $result) {    
+    if(!array_key_exists('homeOffice', $result)) {
+        $result['homeOffice'] = 0;
+    } else {
+        $result['homeOffice'] = 1;
+    }
+
     if(checkShift($y,$m,$key,$userId)) {
-        if($result != NULL && $result != '---') {
-            updateShift($y,$m,$key,$userId,$result);            
+        if($result['shift'] != NULL && $result['shift'] != '---') {
+            updateShift($y, $m, $key, $userId, $result['shift'], $result['homeOffice']);         
             header('location: main.php?m='.$m.'&y='.$y);
         } else {
             deleteShift($y,$m,$key,$userId);
             header('location: main.php?m='.$m.'&y='.$y);
         }
     } else {
-        if($result != NULL) {
-            saveShift($y,$m,$key,$userId,$result);
+        if($result['shift'] != NULL) {
+            saveShift($y,$m,$key,$userId,$result['shift'], $result['homeOffice']);
             header('location: main.php?m='.$m.'&y='.$y);
         }
     }

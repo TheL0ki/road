@@ -197,16 +197,16 @@ function checkShift($year, $month, $day, $user) {
     }
 }
 
-function saveShift($year, $month, $day, $user, $shift) {
+function saveShift($year, $month, $day, $user, $shift, $ho) {
     global $mysqli;
-    $insert = "INSERT INTO schedule (user, month, year, shift, day) VALUES (?, ?, ?, ?, ?)";
+    $insert = "INSERT INTO schedule (user, month, year, shift, day, homeOffice) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $mysqli->prepare($insert);
 
     if($stmt === FALSE) {
         return 'prepare error: '.htmlspecialchars($mysqli->error);
     }
     
-    $rc = $stmt->bind_param('sssss', $user, $month, $year, $shift, $day);
+    $rc = $stmt->bind_param('ssssss', $user, $month, $year, $shift, $day, $ho);
     if($rc === FALSE) {
         return 'bind error: '.htmlspecialchars($mysqli->error);
     }
@@ -219,16 +219,16 @@ function saveShift($year, $month, $day, $user, $shift) {
     return TRUE;
 }
 
-function updateShift($year, $month, $day, $user, $shift) {
+function updateShift($year, $month, $day, $user, $shift, $ho) {
     global $mysqli;
-    $update = "UPDATE schedule SET shift = ? WHERE user = ? AND year = ? AND month =? AND day = ?";
+    $update = "UPDATE schedule SET shift = ?, homeOffice = ? WHERE user = ? AND year = ? AND month = ? AND day = ?";
     $stmt = $mysqli->prepare($update);
 
     if($stmt === FALSE) {
         return 'prepare error: '.htmlspecialchars($mysqli->error);
     }
     
-    $rc = $stmt->bind_param('sssss', $shift, $user, $year, $month, $day);
+    $rc = $stmt->bind_param('ssssss', $shift, $ho, $user, $year, $month, $day);
     if($rc === FALSE) {
         return 'bind error: '.htmlspecialchars($mysqli->error);
     }
@@ -237,7 +237,6 @@ function updateShift($year, $month, $day, $user, $shift) {
     if($rc === FALSE) {
         return 'execute error: '.htmlspecialchars($mysqli->error);
     }
-
     return TRUE;
 }
 

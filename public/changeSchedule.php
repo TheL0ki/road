@@ -10,12 +10,13 @@ require 'config/setup.php';
 require 'config/func.php';
 
 session_start();
-if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
-    $smarty = new Smarty_Road();
 
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
-    $m = filter_input(INPUT_GET, 'm', FILTER_SANITIZE_SPECIAL_CHARS);
-    $y = filter_input(INPUT_GET, 'y', FILTER_SANITIZE_SPECIAL_CHARS);
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$m = filter_input(INPUT_GET, 'm', FILTER_SANITIZE_SPECIAL_CHARS);
+$y = filter_input(INPUT_GET, 'y', FILTER_SANITIZE_SPECIAL_CHARS);
+
+if(isset($_SESSION['user']) AND ($id === $_SESSION['user']['id'] OR $_SESSION['user']['admin'] === 1)) {
+    $smarty = new Smarty_Road();
 
     $date = DateTime::createFromFormat('Y-m-d', $y.'-'.$m.'-1');
 
@@ -28,10 +29,12 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
         $loopDay->modify('+1 day');
     }
 
+    $schedule = getSchedule($id, $m, $y);
+
     $smarty->assign('dateTable', $dateTable);
     $smarty->assign('date', $date);
     $smarty->assign('user', getUser($id));
-    $smarty->assign('schedule', getSchedule($id, $m, $y));
+    $smarty->assign('schedule', $schedule);
     $smarty->assign('shift', getShifts());
     $smarty->display('changeSchedule.tpl');
 } else {

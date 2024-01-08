@@ -36,13 +36,13 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
 				$currentShift = checkShift($year, $month, $i, $user['id']);
 				if($currentShift != FALSE) {
 					if($currentShift['shift'] != 14 AND $currentShift['shift'] != 10 AND $currentShift['shift'] != 18 AND $currentShift['shift'] != 13) {
-					   updateShift($year, $month, $i, $user['id'], $shift);
+					   updateShift($year, $month, $i, $user['id'], $shift, $currentShift['homeOffice']);
 					   // echo 'User '. $user['id'] . ' shift updated ' . "\r\n <br>";
 					} else {
 					   // echo 'Holiday. Skipping update' . "\r\n <br>";
 					}
 				} else {
-					   saveShift($year, $month, $i, $user['id'], $shift);
+					   saveShift($year, $month, $i, $user['id'], $shift, 0);
 					   // echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
 				}
 			 }

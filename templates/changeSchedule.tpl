@@ -80,19 +80,42 @@
 								{else}
 									<td class="day">
 								{/if}
-								<select name="{$i}" id="{$i}">
-									{if array_key_exists($i, $schedule)}
-										<option value="{$schedule.$i.shift.shift}">{$schedule.$i.name}</option>
-									{else}
-										<option></option>
-									{/if}
-									<option>---</option>
-									{foreach from=$shift item=$option}
-										<option value="{$option.id}">{$option.name}</option>
-									{/foreach}
-								</select>
-
-							</td>
+                                        <div class="container-fluid">
+                                            {if $smarty.session.user.admin == 1}
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <select name="shift[{$i}][shift]">
+                                                            {if array_key_exists($i, $schedule)}
+                                                                <option value="{$schedule.$i.shift.shift}">{$schedule.$i.name}</option>
+                                                            {else}
+                                                                <option></option>
+                                                            {/if}
+                                                            <option>---</option>
+                                                            {foreach from=$shift item=$option}
+                                                                <option value="{$option.id}">{$option.name}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            {/if}
+                                            {if array_key_exists($i, $schedule)
+                                                AND {$dateTable.{$i}.N} != 6
+                                                AND {$dateTable.{$i}.N} != 7
+                                                AND {$schedule.$i.shift.shift} != '14'
+                                                AND {$schedule.$i.shift.shift} != '10'
+                                                AND {$schedule.$i.shift.shift} != '12'
+                                            }
+                                                <div class="row">
+                                                    <div class="col">
+                                                        HO: <input type="checkbox" name="shift[{$i}][homeOffice]" {if {$schedule.$i.shift.homeOffice} == 1}checked{/if}>
+                                                        {if $smarty.session.user.admin != 1}
+                                                            <input type="hidden" name="shift[{$i}][shift]" value="{$schedule.$i.shift.shift}">
+                                                        {/if}
+                                                    </div>
+                                                </div>
+                                            {/if}
+                                        </div>
+							        </td>
 							{if $i >= 15}
 								{break}
 							{/if}
@@ -120,18 +143,42 @@
 								{else}
 									<td class="day">
 								{/if}
-								<select name="{$i}" id="{$i}">
-									{if array_key_exists($i, $schedule)}
-										<option value="{$schedule.$i.shift.shift}">{$schedule.$i.name}</option>
-									{else}
-										<option></option>
-									{/if}
-									<option value="">---</option>
-									{foreach from=$shift item=$option}
-										<option value="{$option.id}">{$option.name}</option>
-									{/foreach}
-								</select>
-								</td>
+                                        <div class="container-fluid">
+                                            {if $smarty.session.user.admin == 1}
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <select name="shift[{$i}][shift]">
+                                                            {if array_key_exists($i, $schedule)}
+                                                                <option value="{$schedule.$i.shift.shift}">{$schedule.$i.name}</option>
+                                                            {else}
+                                                                <option></option>
+                                                            {/if}
+                                                            <option>---</option>
+                                                            {foreach from=$shift item=$option}
+                                                                <option value="{$option.id}">{$option.name}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            {/if}
+                                            {if array_key_exists($i, $schedule)
+                                                AND {$dateTable.{$i}.N} != 6
+                                                AND {$dateTable.{$i}.N} != 7
+                                                AND {$schedule.$i.shift.shift} != '14'
+                                                AND {$schedule.$i.shift.shift} != '10'
+                                                AND {$schedule.$i.shift.shift} != '12'
+                                            }
+                                                <div class="row">
+                                                    <div class="col">
+                                                        HO: <input type="checkbox" name="shift[{$i}][homeOffice]" {if {$schedule.$i.shift.homeOffice} == 1}checked{/if}>
+                                                        {if $smarty.session.user.admin != 1}
+                                                            <input type="hidden" name="shift[{$i}][shift]" value="{$schedule.$i.shift.shift}">
+                                                        {/if}
+                                                    </div>
+                                                </div>
+                                            {/if}
+                                        </div>
+                                    </td>
 							{/for}
 						</tr>
 					</tbody>
