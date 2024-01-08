@@ -60,9 +60,9 @@
 								{else}
 									<th class="day dark-text">
 								{/if}
-									{$loopDay|date_format:"d"}
+								{$loopDay|date_format:"d"}
 								</th>
-								{assign var="loopDay" value={{$loopDay|date_format:'U'}+{24*60*60}}}
+								{assign var="loopDay" value={$loopDay|date_format:'U'}+{24*60*60}}
 								{if $i >= 15}
 									{break}
 								{/if}
