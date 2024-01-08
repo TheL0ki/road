@@ -48,6 +48,7 @@
 								<th scope="col">E-Mail</th>
 								<th scope="col">Model</th>
 								<th scope="col">Admin</th>
+								<th scope="col">Options</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,7 +58,11 @@
 								<td>{$teams.{$user.team}.display}</td>
 								<td>{$user.email}</td>
 								<td>{$user.model}</td>
-								<td><input type="checkbox" {if $user.admin == 1}checked{/if}></td>
+								<td class="text-center"><input type="checkbox" {if $user.admin == 1}checked{/if}></td>
+								<td class="text-center">
+									<a href="#" class="btn btn-success">&#x270E; Edit</a>
+									<a href="#" class="btn btn-danger">&#128465; Delete</a>
+								</td>
 							</tr>
 							{/foreach}
 						</tbody>
