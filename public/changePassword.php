@@ -26,5 +26,5 @@ if(isset($_SESSION["user"])) {
     }
     $smarty->display('changePassword.tpl');
 } else {
-    header('location: index.php');
+    http_response_code(RESPONSE_FORBIDDEN);
 }

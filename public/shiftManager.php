@@ -18,5 +18,5 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
     $smarty->assign('shifts', getShifts());
     $smarty->display('shiftManager.tpl');
 } else {
-	header('location: index.php');
+	http_response_code(RESPONSE_FORBIDDEN);
 }

@@ -20,5 +20,5 @@ $user = getUser($id);
 $smarty->assign('user', $user);
 $smarty->display('changeUser.tpl');
 } else {
-    header('location: index.php');
+    http_response_code(RESPONSE_FORBIDDEN);
 }

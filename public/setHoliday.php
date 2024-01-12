@@ -21,15 +21,15 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
     foreach($allUsers as $user) {
 
         if(checkShift($year, $month, $day, $user['id'])) {
-            updateShift($year, $month, $day, $user['id'], $shift);
+            updateShift($year, $month, $day, $user['id'], $shift, 0);
             //echo 'User '. $user['id'] . ' shift updated ' . "\r\n <br>";
         } else {
-            saveShift($year, $month, $day, $user['id'], $shift);
+            saveShift($year, $month, $day, $user['id'], $shift, 0);
             //echo 'User '. $user['id'] . ' shift saved ' . "\r\n <br>";
         }
     }
 
     header('location: index.php?m='.$month.'&y='.$year);
 } else {
-    header('location: index.php');
+    http_response_code(RESPONSE_FORBIDDEN);
 }

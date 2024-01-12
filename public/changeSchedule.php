@@ -38,5 +38,5 @@ if(isset($_SESSION['user']) AND ($id === $_SESSION['user']['id'] OR $_SESSION['u
     $smarty->assign('shift', getShifts());
     $smarty->display('changeSchedule.tpl');
 } else {
-    header('location: index.php');
+    http_response_code(RESPONSE_FORBIDDEN);
 }

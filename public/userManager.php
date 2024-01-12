@@ -20,5 +20,5 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
     $smarty->assign('users', $users);
     $smarty->display('userManager.tpl');
 } else {
-    header('location: index.php');
+    http_response_code(RESPONSE_FORBIDDEN);
 }

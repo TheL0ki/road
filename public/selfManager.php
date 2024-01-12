@@ -44,5 +44,5 @@ if(isset($_SESSION["user"]))
 } 
 else
 {
-    header('location: index.php');
+    http_response_code(RESPONSE_FORBIDDEN);
 }
