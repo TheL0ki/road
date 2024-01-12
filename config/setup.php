@@ -39,4 +39,4 @@ $mysqli->set_charset('utf8');
 
 const RESPONSE_FORBIDDEN = 403;
 
-require 'validator.php';
+require 'config/validator.php';
