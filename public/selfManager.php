@@ -11,23 +11,38 @@ require 'config/func.php';
 
 session_start();
 $smarty = new Smarty_Road();
-if(isset($_SESSION["user"])) {
-    if(isset($_POST['email'])) {
+if(isset($_SESSION["user"]))
+{
+    if($_SERVER['REQUEST_METHOD'] === 'POST') 
+    {
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
         $userID = filter_input(INPUT_POST, 'userID', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if(!changeSettings($userID, $email)) {
+        if(Validator::email($email))
+        {
+            if(!changeSettings($userID, $email)) 
+            {
+                echo "ERR";
+                die;
+            } 
+            else
+            {
+                $_SESSION["user"]["email"] = $email;
+                $smarty->display('success.tpl');
+                header('Refresh:3; url=selfManager.php');
+                die;
+            }
+        }
+        else
+        {
             echo "ERR";
-            die;
-        } else {
-            $_SESSION["user"]["email"] = $email;
-            $smarty->display('success.tpl');
-            header('Refresh:3; url=selfManager.php');
             die;
         }
     }
 
     $smarty->display('selfManager.tpl');
-} else {
+} 
+else
+{
     header('location: index.php');
 }

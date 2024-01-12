@@ -36,3 +36,7 @@ if($mysqli->errno) {
 
 $mysqli->query("SET NAMES 'utf8'");
 $mysqli->set_charset('utf8');
+
+const RESPONSE_FORBIDDEN = 403;
+
+require 'Validator.php';

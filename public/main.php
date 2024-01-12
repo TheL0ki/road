@@ -78,5 +78,5 @@ if(isset($_SESSION["user"])) {
     $smarty->assign('setMonth', $date->format('n'));
     $smarty->display('main.tpl');
 } else {
-    header('location: index.php');
+    http_response_code(RESPONSE_FORBIDDEN);
 }
