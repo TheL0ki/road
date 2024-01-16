@@ -39,4 +39,5 @@ if(isset($_SESSION['user']) AND ($id === $_SESSION['user']['id'] OR $_SESSION['u
     $smarty->display('changeSchedule.tpl');
 } else {
     http_response_code(RESPONSE_FORBIDDEN);
+    header('location: index.php');
 }

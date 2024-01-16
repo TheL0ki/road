@@ -11,8 +11,7 @@ require 'config/func.php';
 
 session_start();
 $smarty = new Smarty_Road();
-if(isset($_SESSION["user"]))
-{
+if(isset($_SESSION["user"])) {
     if($_SERVER['REQUEST_METHOD'] === 'POST') 
     {
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -41,8 +40,7 @@ if(isset($_SESSION["user"]))
     }
 
     $smarty->display('selfManager.tpl');
-} 
-else
-{
+} else {
     http_response_code(RESPONSE_FORBIDDEN);
+    header('location: index.php');
 }

@@ -79,4 +79,5 @@ if(isset($_SESSION["user"])) {
     $smarty->display('main.tpl');
 } else {
     http_response_code(RESPONSE_FORBIDDEN);
+    header('location: index.php');
 }

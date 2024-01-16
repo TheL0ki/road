@@ -32,4 +32,5 @@ if(isset($_SESSION["user"]) AND $_SESSION["user"]["admin"] == 1) {
     header('location: index.php?m='.$month.'&y='.$year);
 } else {
     http_response_code(RESPONSE_FORBIDDEN);
+    header('location: index.php');
 }
