@@ -61,6 +61,7 @@
 									<label for="team" class="form-label dark-text">Team</label>
 									<select class="form-select bg-dark text-white" name="team" id="team" aria-activedescendant="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
 										<option {if $team == 'all'} selected="selected"{/if} value="main.php?y={$setYear}&m={$setMonth}">All</option>
+										<option {if $team == 'me'} selected="selected"{/if} value="main.php?y={$setYear}&m={$setMonth}&t=me">Only me</option>
 										{foreach from=$listTeams item=listTeam}
 											<option {if $team == $listTeam.id} selected="selected"{/if} value="main.php?y={$setYear}&m={$setMonth}&t={$listTeam.id}">{$listTeam.display}</option>
 										{/foreach}
@@ -80,9 +81,17 @@
 										<select class="form-select bg-dark text-white" name="month" id="month" aria-describedby="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
 											{for $i=1 to 12}
 												{if $i=={$setMonth}}
-													<option selected="selected" value="main.php?y={$setYear}&m={$i}">{$months.$i}</option>
+													{if isset($team)}
+														<option selected="selected" value="main.php?y={$setYear}&m={$i}$t={$team}">{$months.$i}</option>
+													{else}														
+														<option selected="selected" value="main.php?y={$setYear}&m={$i}">{$months.$i}</option>
+													{/if}
 												{else}
-													<option value="main.php?y={$setYear}&m={$i}">{$months.$i}</option>
+													{if isset($team)}
+														<option value="main.php?y={$setYear}&m={$i}&t={$team}">{$months.$i}</option>
+													{else}
+														<option value="main.php?y={$setYear}&m={$i}">{$months.$i}</option>
+													{/if}
 												{/if}
 											{/for}
 										</select>
@@ -94,9 +103,17 @@
 										<select class="form-select bg-dark text-white" name="year" id="year" aria-describedby="helpId" placeholder="" onchange="if (this.value) window.location.href=this.value">
 											{for $i={$setYear}-2 to {$setYear}+2}
 												{if $i == {$setYear}}
-													<option selected="selected" value="main.php?y={$i}&m={$setMonth}">{$i}</option>
+													{if isset($team)}
+														<option selected="selected" value="main.php?y={$i}&m={$setMonth}&t={$team}">{$i}</option>
+													{else}
+														<option selected="selected" value="main.php?y={$i}&m={$setMonth}">{$i}</option>
+													{/if}
 												{else}
-													<option value="main.php?y={$i}&m={$setMonth}">{$i}</option>
+													{if isset($team)}
+														<option value="main.php?y={$i}&m={$setMonth}&t={$team}">{$i}</option>
+													{else}
+														<option value="main.php?y={$i}&m={$setMonth}">{$i}</option>
+													{/if}
 												{/if}
 											{/for}
 										</select>
@@ -116,7 +133,11 @@
 							{$prevYear={$setYear}}
 						{/if}
 						<div class="d-grid gap-2">
-							<a name="" id="" class="btn btn-dark" href="main.php?m={$prevMonth}&y={$prevYear}" role="button">← {$months.$prevMonth} {$prevYear}</a>
+							{if isset($team)}
+								<a name="" id="" class="btn btn-dark" href="main.php?m={$prevMonth}&y={$prevYear}&t={$team}" role="button">← {$months.$prevMonth} {$prevYear}</a>
+							{else}
+								<a name="" id="" class="btn btn-dark" href="main.php?m={$prevMonth}&y={$prevYear}" role="button">← {$months.$prevMonth} {$prevYear}</a>
+							{/if}
 						</div>
 					</div>
 					<div class="col">
@@ -128,7 +149,11 @@
 							{$nextYear={$setYear}}
 						{/if}
 						<div class="d-grid gap-2">
-							<a name="" id="" class="btn btn-dark" href="main.php?m={$nextMonth}&y={$nextYear}" role="button">{$months.$nextMonth} {$nextYear} →</a>
+							{if isset($team)}
+								<a name="" id="" class="btn btn-dark" href="main.php?m={$nextMonth}&y={$nextYear}&t={$team}" role="button">{$months.$nextMonth} {$nextYear} →</a>
+							{else}
+								<a name="" id="" class="btn btn-dark" href="main.php?m={$nextMonth}&y={$nextYear}" role="button">{$months.$nextMonth} {$nextYear} →</a>
+							{/if}
 						</div>
 					</div>
 				</div>                

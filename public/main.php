@@ -40,10 +40,15 @@ if(isset($_SESSION["user"])) {
 
     $schedule = array();
 
-    if($team == 'all') {
-        $users = getAllActiveUser();
-    } else {
-        $users = getUsersFromTeam($team);
+    switch($team) {
+        case 'all':
+            $users = getAllActiveUser();
+            break;
+        case 'me':
+            $users[] = getUser($_SESSION['user']['id']);
+            break;
+        default:
+            $users = getUsersFromTeam($team);
     }
 
     if(isset($m)) {
