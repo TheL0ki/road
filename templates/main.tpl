@@ -169,7 +169,7 @@
 									{if {$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7}
 									<th class="day weekend dark-text">
 									{elseif {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}
-										<th class="day today dark-text">
+										<th class="day today">
 									{else}
 										<th class="day dark-text">
 									{/if}

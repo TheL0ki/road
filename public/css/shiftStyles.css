@@ -2,7 +2,7 @@ table.table-striped td.today, table.table-dark td.today, table.table-dark th.tod
     background-color: lightskyblue;
     --bs-table-bg-type: lightskyblue;
     --bs-table-striped-bg: lightskyblue;
-    color: #FFFFFF;
+    color: darkblue;
 }
 
 table.table-striped td.shiftLate, table.table-dark td.shiftLate {
