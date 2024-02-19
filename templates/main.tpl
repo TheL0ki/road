@@ -197,7 +197,7 @@
 											<td class="day schedule shiftLate" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{elseif $schedule[$user.id][$i]['name'] == '814' OR $schedule[$user.id][$i]['name'] == '915' OR $schedule[$user.id][$i]['name'] == '1518'}
 											<td class="day schedule shiftShort" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
-										{elseif $schedule[$user.id][$i]['name'] == 'U' OR $schedule[$user.id][$i]['name'] == 'K' OR $schedule[$user.id][$i]['name'] == 'Ka' OR $schedule[$user.id][$i]['name'] == 'SCH'}                                        
+										{elseif $schedule[$user.id][$i]['name'] == 'U' OR $schedule[$user.id][$i]['name'] == 'K' OR $schedule[$user.id][$i]['name'] == 'Ka' OR $schedule[$user.id][$i]['name'] == 'SCH' OR $schedule[$user.id][$i]['name'] == 'PF'}                                        
 											<td class="day schedule shiftAway" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
 										{elseif $schedule[$user.id][$i]['name'] == 'WE'}
 											<td class="day schedule shiftWe" {if $schedule[$user.id][$i]['homeOffice'] === 1}style="border:2px solid red;"{/if}>
