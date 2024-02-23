@@ -48,8 +48,8 @@
 										<td>{$shift.display}</td>
 										<td>
 											<div style="background-color: #{$shift.color|upper}; color: #{$shift.textColor|upper}">
-												<div>Text: #{$shift.textColor|upper}</div>
-								<div>Cell: {if $shift.color == NULL}Not Set{else}#{$shift.color|upper}{/if}</div>
+												<div>Text: {if $shift.textColor == NULL}Not Set{else}#{$shift.textColor|upper}{/if}</div>
+												<div>Cell: {if $shift.color == NULL}Not Set{else}#{$shift.color|upper}{/if}</div>
 											</div>	
 										</td>
 										<td>{$shift.hours}</td>
