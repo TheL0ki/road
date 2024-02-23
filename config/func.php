@@ -113,6 +113,7 @@ function getSchedule($id, $month, $year) {
                 'display' => $displayName['display'],
                 'name' => $displayName['name'],
                 'color' => $displayName['color'],
+                'textColor' => $displayName['textColor'],
                 'homeOffice' => $shift['homeOffice']
             );
         }
@@ -148,7 +149,7 @@ function getShifts() {
 
 function getShiftName($id) {
     global $mysqli;
-    $select = "SELECT display, name, color FROM shifts WHERE id = ?";
+    $select = "SELECT display, name, color, textColor FROM shifts WHERE id = ?";
     $stmt = $mysqli->prepare($select);
 
     if($stmt === FALSE) {

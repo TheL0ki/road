@@ -38,16 +38,21 @@
 								<tr>
 									<th>Name</th>
 									<th>Display</th>
-									<th>Hours</th>
 									<th>Color Coding</th>
+									<th>Hours</th>
 									<th>Options</th>
 								</tr>
 								{foreach from=$shifts item=shift}
 									<tr>
 										<td>{$shift.name}</td>
 										<td>{$shift.display}</td>
+										<td>
+											<div style="background-color: #{$shift.color|upper}; color: #{$shift.textColor|upper}">
+												<div>Text: #{$shift.textColor|upper}</div>
+								<div>Cell: {if $shift.color == NULL}Not Set{else}#{$shift.color|upper}{/if}</div>
+											</div>	
+										</td>
 										<td>{$shift.hours}</td>
-										<td></td>
 										<td class="text-center">
 											<a href="#" class="btn btn-success">&#x270E; Edit</a>
 											<a href="#" class="btn btn-danger">&#128465; Delete</a>

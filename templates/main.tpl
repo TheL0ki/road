@@ -191,10 +191,12 @@
 								</td>
 								{for $i=1 to {$date|date_format:"t"}}
 									{if array_key_exists($i, $schedule[$user.id]) == TRUE}
-										<td class="day schedule p-0{if {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}{if {$x} == {$users|@count}} last{else} today{/if}{/if}" style="
+										<td class="day schedule p-0{if {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}}{if {$x} == {$users|@count}} last{else} today{/if}{/if}" 
+											style="
 											background-color: #{$schedule[$user.id][$i]['color']};
 											--bs-table-bg-type: #{$schedule[$user.id][$i]['color']};
 											--bs-table-striped-bg: #{$schedule[$user.id][$i]['color']};
+											color: #{$schedule[$user.id][$i]['textColor']}
 											">
 									{else}
 										{if ({$dateTable.{$i}.N} == 6 OR {$dateTable.{$i}.N} == 7)}
