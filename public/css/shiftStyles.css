@@ -21,7 +21,7 @@ table.table-striped td.weekend, table.table-dark td.weekend, table.table-dark th
 }
 
 .shiftContainer {
-    display: grid;
+    display: table;
     align-items: center;
     height:100%;
     width: 100%;
