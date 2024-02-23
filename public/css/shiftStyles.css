@@ -1,3 +1,7 @@
+th.day {
+    text-align: center;
+}
+
 td.today {
     border-left: 2px solid lightskyblue;
     border-right: 2px solid lightskyblue;
@@ -20,14 +24,35 @@ table.table-striped td.weekend, table.table-dark td.weekend, table.table-dark th
     --bs-table-striped-bg: #191717;
 }
 
-.shiftContainer {
+.shiftWrapper {
     display: table;
-    align-items: center;
     height:100%;
     width: 100%;
     position: relative;
+    vertical-align: middle;
+}
+
+.shiftContainer {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .homeOffice {
     border:2px solid red;
+}
+
+.day {
+    width: 30px;
+    height: 1px;
+    position: relative;
+}
+
+.name {
+    width: 10%;
+    white-space: nowrap;
+}
+
+.schedule {
+    font-size: x-small;
 }

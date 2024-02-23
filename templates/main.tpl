@@ -12,29 +12,11 @@
 	<link rel="stylesheet" type="text/css" href="css/darkStyle.css">
 	<link rel="stylesheet" type="text/css" href="css/shiftStyles.css">
 	<style>
-		table {
-			table-layout:fixed;
-		}
 		td {
 			overflow: hidden;
 			text-overflow: ellipsis;
 			word-wrap: break-word;
 			hyphens: manual;
-		}
-		.day {
-			width: 30px;
-			height: 1px;
-			text-align: center;
-			position: relative;
-		}
-
-		.name {
-			width: 10%;
-			white-space: nowrap;
-		}
-
-		.schedule {
-			font-size: x-small;
 		}
 	</style>
 	</head>
@@ -161,7 +143,7 @@
 				<div class="row justify-content-center align-items-center mt-3">
 					<div class="col">
 						<div class="table-responsive">
-							<table class="table table-dark table-striped table-bordered" style="table-layout: auto;">
+							<table class="table table-dark table-striped table-bordered">
 								<thead>
 								<tr>
 									<th class="name dark-text">
@@ -206,10 +188,12 @@
 												<td class="day p-0{if {$dateTable.{$i}.ymd} == {$smarty.now|date_format:'Y-m-d'}} today{/if}">
 											{/if}
 										{/if}
-											<div class='shiftContainer{if array_key_exists($i, $schedule[$user.id]) == TRUE}{if $schedule[$user.id][$i]['homeOffice'] === 1} homeOffice{/if}{/if}'>
-												{if array_key_exists($i, $schedule[$user.id]) == TRUE}
-													<nobr>{$schedule[$user.id][$i]['display']|replace:"-":"-<br>"}</nobr>
-												{/if}
+											<div class="shiftWrapper">
+												<div class='shiftContainer{if array_key_exists($i, $schedule[$user.id]) == TRUE}{if $schedule[$user.id][$i]['homeOffice'] === 1} homeOffice{/if}{/if}'>
+													{if array_key_exists($i, $schedule[$user.id]) == TRUE}
+														<nobr>{$schedule[$user.id][$i]['display']|replace:"-":"-<br>"}</nobr>
+													{/if}
+												</div>
 											</div>
 										</td>
 									{/for}
