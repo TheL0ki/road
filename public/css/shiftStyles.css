@@ -1,48 +1,33 @@
-table.table-striped td.today, table.table-dark td.today, table.table-dark th.today {
-    background-color: lightskyblue;
-    --bs-table-bg-type: lightskyblue;
-    --bs-table-striped-bg: lightskyblue;
-    color: darkblue;
+td.today {
+    border-left: 2px solid lightskyblue;
+    border-right: 2px solid lightskyblue;
 }
 
-table.table-striped td.shiftLate, table.table-dark td.shiftLate {
-    background-color: #F3B664;
-    --bs-table-bg-type: #F3B664;
-    --bs-table-striped-bg: #F3B664;
+th.today {
+    border-top : 2px solid lightskyblue;
+    border-left: 2px solid lightskyblue;
+    border-right: 2px solid lightskyblue;
 }
 
-
-table.table-striped td.shiftEarly, table.table-dark td.shiftEarly {
-    background-color: #4F6F52;
-    --bs-table-bg-type: #4F6F52;
-    --bs-table-striped-bg: #4F6F52;
-}
-
-table.table-striped td.shiftShort, table.table-dark td.shiftShort {
-    background-color: #3081D0;
-    --bs-table-bg-type: #3081D0;
-    --bs-table-striped-bg: #3081D0;
-}
-
-table.table-striped td.shiftAway, table.table-dark td.shiftAway {
-    background-color: rgb(170, 170, 170);
-    --bs-table-bg-type: rgb(170, 170, 170);
-    --bs-table-striped-bg: rgb(170, 170, 170);
-}
-
-table.table-striped td.shiftWe, table.table-dark td.shiftWe {
-    background-color: #5D3587;
-    --bs-table-bg-type: #5D3587;
-    --bs-table-striped-bg: #5D3587;
-}
-
-table.table-striped td.shiftHoliday, table.table-dark td.shiftHoliday {
-    background-color: #7D0A0A;
-    --bs-table-bg-type: #7D0A0A;
-    --bs-table-striped-bg: #7D0A0A;
+td.last {
+    border-bottom : 2px solid lightskyblue;
+    border-left: 2px solid lightskyblue;
+    border-right: 2px solid lightskyblue;
 }
 
 table.table-striped td.weekend, table.table-dark td.weekend, table.table-dark th.weekend {
     background-color: #191717;
     --bs-table-striped-bg: #191717;
+}
+
+.shiftContainer {
+    display: grid;
+    align-items: center;
+    height:100%;
+    width: 100%;
+    position: relative;
+}
+
+.homeOffice {
+    border:2px solid red;
 }
