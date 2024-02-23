@@ -29,7 +29,7 @@
 			</div>
 		{/if}
 		<div class="row justify-content-center">
-			<div class="col-6">
+			<div class="col">
 				<form action="selfManager.php" method="post">
 					<div class="container">
 						<div class="row">

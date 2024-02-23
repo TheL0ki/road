@@ -41,25 +41,23 @@
 						</div>
 					</div>
 				{/if}
-			<div class="row justify-content-center">
-				<div class="col-3">
-					<form action="index.php" method="post">
-						<div class="mb-3 row">
-							<label for="email" class="form-label dark-text">E-Mail</label>
-							<div class="col-sm-10">
-								<input type="text" id="username" name="email" class="form-control bg-dark text-white">
-							</div>                    
+				<div class="row justify-content-center">
+					<div class="col">
+						<div class="container">
+							<form action="index.php" method="post">
+								<div class="mb-3">
+									<label for="email" class="form-label dark-text">E-Mail</label>
+									<input type="text" id="username" name="email" class="form-control bg-dark text-white">
+								</div>
+								<div class="mb-3">
+									<label for="pwd" class="form-label dark-text">Password</label>
+									<input type="password" id="pwd" name="pwd" class="form-control bg-dark text-white">
+								</div>
+								<button type="submit" class="btn btn-primary">Login</button>
+							</form>
 						</div>
-						<div class="mb-3 row">
-							<label for="pwd" class="form-label dark-text">Password</label>
-							<div class="col-sm-10">
-								<input type="password" id="pwd" name="pwd" class="form-control bg-dark text-white">
-							</div>                    
-						</div>
-						<button type="submit" class="btn btn-primary">Login</button>
-					</form>
+					</div>
 				</div>
-			</div>
 			</div>
 		</main>
 		{/nocache}
