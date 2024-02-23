@@ -183,7 +183,6 @@
 							{foreach from=$users item=user}
 							<tr>
 								<td class="name">
-								{$x}
 									{if $smarty.session.user.admin == 1 OR $smarty.session.user.id == $user.id}
 										<a href="changeSchedule.php?id={$user.id}&y={$setYear}&m={$date|date_format:'m'}" class="link-light">{$user.firstname} {$user.lastname}</a>
 									{else}
