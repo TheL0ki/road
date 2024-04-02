@@ -42,7 +42,7 @@ if(isset($_SESSION["user"])) {
 
     switch($team) {
         case 'all':
-            $users = getAllActiveUser();
+            $users = getAllUser();
             break;
         case 'me':
             $users[] = getUser($_SESSION['user']['id']);

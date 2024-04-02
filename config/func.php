@@ -23,9 +23,32 @@ function getAllActiveUser() {
     return $result;
 }
 
+function getAllUser() {
+    global $mysqli;
+    $select = "SELECT * FROM user ORDER BY lastname ASC";
+    $stmt = $mysqli->prepare($select);
+
+    if($stmt === FALSE) {
+        return 'prepare error: '.htmlspecialchars($mysqli->error);
+    }
+    
+    $rc = $stmt->execute();
+    if($rc === FALSE) {
+        return 'execute error: '.htmlspecialchars($mysqli->error);
+    }
+
+    $output = $stmt->get_result();
+
+    while($row = $output->fetch_assoc()) {
+        $result[] = $row;
+    }
+    
+    return $result;
+}
+
 function getUsersFromTeam($team) {
     global $mysqli;
-    $select = "SELECT * FROM user WHERE active = 1 AND team = ? ORDER BY lastname ASC";
+    $select = "SELECT * FROM user WHERE team = ? ORDER BY lastname ASC";
     $stmt = $mysqli->prepare($select);
 
     if($stmt === FALSE) {

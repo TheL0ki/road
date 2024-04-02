@@ -7,3 +7,4 @@ mysql_config.ini
 templates_c/
 cache/
 pull.php
+.env
