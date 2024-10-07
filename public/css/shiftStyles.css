@@ -3,8 +3,8 @@ th.day {
 }
 
 td.today {
-    border-left: 2px solid lightskyblue;
-    border-right: 2px solid lightskyblue;
+    border-left: 2px solid yellow;
+    border-right: 2px solid yellow;
 }
 
 th.today {
