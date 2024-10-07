@@ -8,15 +8,15 @@ td.today {
 }
 
 th.today {
-    border-top : 2px solid lightskyblue;
-    border-left: 2px solid lightskyblue;
-    border-right: 2px solid lightskyblue;
+    border-top : 2px solid yellow;
+    border-left: 2px solid yellow;
+    border-right: 2px solid yellow;
 }
 
 td.last {
-    border-bottom : 2px solid lightskyblue;
-    border-left: 2px solid lightskyblue;
-    border-right: 2px solid lightskyblue;
+    border-bottom : 2px solid yellow;
+    border-left: 2px solid yellow;
+    border-right: 2px solid yellow;
 }
 
 table.table-striped td.weekend, table.table-dark td.weekend, table.table-dark th.weekend {
