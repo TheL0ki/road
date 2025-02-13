@@ -23,8 +23,7 @@ $stmt->bind_param('sss', $day, $month, $year);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$url = "https://hooks.slack.com/triggers/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";
-
+$url = $_ENV['SLACK_WEBHOOK'];
 
 while($row = $result->fetch_array()) {
     $user = getUser($row[0]);
