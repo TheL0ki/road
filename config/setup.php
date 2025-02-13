@@ -1,5 +1,10 @@
 <?php
 
+use Symfony\Component\Dotenv\Dotenv;
+
+$dotenv = new Dotenv();
+$dotenv->load(__DIR__.'/.env');
+
 chdir(dirname(__DIR__));
 
 define('SMARTY_DIR', 'vendor/smarty/smarty/libs/');
@@ -25,10 +30,10 @@ date_default_timezone_set("Europe/Berlin");
 $config = parse_ini_file('config/mysql_config.ini', TRUE);
 
 $mysqli = new mysqli(
-    $config['database_road']['database_host'],
-    $config['database_road']['database_user'],
-    $config['database_road']['database_pwd'],
-    $config['database_road']['database_name']);
+    $_ENV['DB_HOST'],
+    $_ENV['DB_USER'],
+    $_ENV['DB_PASSWORD'],
+    $_ENV['DB_NAME']);
 if($mysqli->errno) {
     echo "Failed to connect to database" . $mysqli->error;
     die;
