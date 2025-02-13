@@ -72,6 +72,8 @@ if(isset($_SESSION["user"])) {
         $loopDay->modify('+1 day');
     }
 
+    $smarty->registerPlugin('modifier', 'array_key_exists', 'array_key_exists');
+    
     $smarty->assign('dateTable', $dateTable);
     $smarty->assign('team', $team);
     $smarty->assign('listTeams', getTeams());
