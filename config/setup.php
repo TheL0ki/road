@@ -2,10 +2,10 @@
 
 use Symfony\Component\Dotenv\Dotenv;
 
+chdir(dirname(__DIR__));
+
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__.'/.env');
-
-chdir(dirname(__DIR__));
 
 define('SMARTY_DIR', 'vendor/smarty/smarty/libs/');
 
